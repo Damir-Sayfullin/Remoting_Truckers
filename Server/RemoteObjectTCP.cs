@@ -33,15 +33,6 @@ namespace Server
 
         public string Autorization(string login, string password)
         {
-            this.TopMost = true;
-            MessageBox.Show(
-                    "Введите логин и пароль!",
-                    "Ошибка",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error,
-                    MessageBoxDefaultButton.Button1,
-                    MessageBoxOptions.DefaultDesktopOnly);
-            this.TopMost = false;
             using (OleDbConnection connection = new OleDbConnection(connectionString))
             {
                 connection.Open();

@@ -38,6 +38,7 @@ namespace Server
 
         public string Registration(string name, string login, string password, string post)
         {
+            Console.WriteLine("asdasdasdasdas");
             using (OleDbConnection connection = new OleDbConnection(connectionString))
             {
                 connection.Open();

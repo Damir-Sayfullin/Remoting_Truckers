@@ -21,10 +21,10 @@ namespace Truckers
         public FormLogin()
         {
             InitializeComponent();
-            ConnectToRemoteObject();
+            ConnectToServer();
         }
 
-        private void ConnectToRemoteObject()
+        private void ConnectToServer()
         {
             RemotingConfiguration.Configure("C:/My Files/Универ/3 курс/Технологии программирования/TP_Truckers/Truckers/ClientConfig.config", false);
             remoteTCP = new RemoteObjectTCP();

@@ -4,6 +4,10 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.Remoting.Channels;
+using System.Runtime.Remoting.Channels.Http;
+using System.Runtime.Remoting.Lifetime;
+using System.Runtime.Serialization.Formatters;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -13,12 +17,25 @@ namespace Truckers
 {
     public partial class FormRegister : Form
     {
+        public RemoteObjectHTTP remoteHTTP;
+        HttpChannel channel = new HttpChannel(new Dictionary<string, string> { { "port", "0" } }, new BinaryClientFormatterSinkProvider(), new BinaryServerFormatterSinkProvider { TypeFilterLevel = TypeFilterLevel.Full });
+
         bool password_show = false;
         private FormLogin formLogin;
         public FormRegister(FormLogin formLogin)
         {
             InitializeComponent();
             this.formLogin = formLogin;
+            ConnectToServer();
+        }
+
+        private void ConnectToServer()
+        {
+            ChannelServices.RegisterChannel(channel, false);
+            remoteHTTP = new RemoteObjectHTTP();
+            ILease lease = (ILease)remoteHTTP.InitializeLifetimeService();
+            ClientSponsor clientHTTPSponsor = new ClientSponsor();
+            lease.Register(clientHTTPSponsor);
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -46,10 +63,7 @@ namespace Truckers
             {
                 try
                 {
-                    IRemoteObject remoteObject = (IRemoteObject)Activator.GetObject(
-                     typeof(IRemoteObject),
-                     "tcp://localhost:8080/RemoteObject.rem");
-                    string result = remoteObject.Registration(textBox1.Text, textBox2.Text, textBox3.Text, comboBox1.Text);
+                    string result = remoteHTTP.Registration(textBox1.Text, textBox2.Text, textBox3.Text, comboBox1.Text);
 
                     if (result == "0")
                     {
