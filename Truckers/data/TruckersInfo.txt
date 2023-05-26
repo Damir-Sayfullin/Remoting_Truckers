@@ -6,5 +6,8 @@
     • Водитель
       • Взятие груза
       • Доставка груза
+      • Отмена груза
       • Просмотр информации о текущем грузе              
   • Регистрация
+
+Add check post in FormLogin and modified Autorization(). Autorization in http channel. Begin create method ReloadCargo.

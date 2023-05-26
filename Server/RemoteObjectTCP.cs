@@ -41,8 +41,20 @@ namespace Server
                 // закрытие соединения
                 connection.Close();
 
-                // возвращение количества строк
-                return Convert.ToString(dataTable.Rows.Count);
+                // если пользователь с таким логином и паролем не найден
+                if (dataTable.Rows.Count == 0)
+                    return "1";
+                else
+                {
+                    // если пользователь водитель
+                    if (dataTable.Rows[0][2].ToString() == "Водитель")
+                        return "driver";
+                    // если пользователь логист
+                    else if (dataTable.Rows[0][2].ToString() == "Логист")
+                        return "logist";
+                    else
+                        return "1";
+                }
             }
         }
 
@@ -82,6 +94,27 @@ namespace Server
                     return "1";
                 }
             }
+        }
+
+        public DataTable ReloadCargo()
+        {/*
+            using (OleDbConnection connection = new OleDbConnection(connectionString))
+            {
+                // открытие соединения
+                connection.Open();
+
+                DataTable dataTable = new DataTable(); // создание таблицы
+                OleDbDataAdapter adapter = new OleDbDataAdapter(string.Format("SELECT * FROM Users WHERE Login='{0}' AND Password='{1}'", login, password), connection);
+                adapter.Fill(dataTable); // запись результатов выполнения запроса в таблицу
+
+                // закрытие соединения
+                connection.Close();
+
+                // возвращение количества строк
+                return Convert.ToString(dataTable.Rows.Count);
+            }*/
+            DataTable dataTable = new DataTable();
+            return dataTable;
         }
 
         public byte[] Upload(string path)

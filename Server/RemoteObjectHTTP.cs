@@ -41,8 +41,20 @@ namespace Server
                 // закрытие соединения
                 connection.Close();
 
-                // возвращение количества строк
-                return Convert.ToString(dataTable.Rows.Count);
+                // если пользователь с таким логином и паролем не найден
+                if (dataTable.Rows.Count == 0)
+                    return "1";
+                else
+                {
+                    // если пользователь водитель
+                    if (dataTable.Rows[0][2].ToString() == "Водитель")
+                        return "driver";
+                    // если пользователь логист
+                    else if (dataTable.Rows[0][2].ToString() == "Логист")
+                        return "logist";
+                    else
+                        return "1";
+                }
             }
         }
 
@@ -82,6 +94,12 @@ namespace Server
                     return "1";
                 }
             }
+        }
+
+        public DataTable ReloadCargo()
+        {
+            DataTable dataTable = new DataTable();
+            return dataTable;
         }
 
         public byte[] Upload(string path)

@@ -5,7 +5,10 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Runtime.Remoting;
+using System.Runtime.Remoting.Channels;
+using System.Runtime.Remoting.Channels.Http;
 using System.Runtime.Remoting.Lifetime;
+using System.Runtime.Serialization.Formatters;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -15,9 +18,10 @@ namespace Truckers
 {
     public partial class FormLogin : Form
     {
-        public RemoteObjectTCP remoteTCP; // удаленный объект
-        bool password_show = false; // показывать пароль
+        public RemoteObjectHTTP remoteHTTP; // удаленный объект
+        HttpChannel channel = new HttpChannel(new Dictionary<string, string> { { "port", "0" } }, new BinaryClientFormatterSinkProvider(), new BinaryServerFormatterSinkProvider { TypeFilterLevel = TypeFilterLevel.Full });
 
+        bool password_show = false;
         public FormLogin()
         {
             InitializeComponent();
@@ -26,11 +30,11 @@ namespace Truckers
 
         private void ConnectToServer() // установка соединения с сервером
         {
-            RemotingConfiguration.Configure("C:/My Files/Универ/3 курс/Технологии программирования/TP_Truckers/Truckers/ClientConfig.config", false);
-            remoteTCP = new RemoteObjectTCP();
-            ILease lease = (ILease)remoteTCP.InitializeLifetimeService();
-            ClientSponsor clientTCPSponsor = new ClientSponsor();
-            lease.Register(clientTCPSponsor);
+            ChannelServices.RegisterChannel(channel, false);
+            remoteHTTP = new RemoteObjectHTTP();
+            ILease lease = (ILease)remoteHTTP.InitializeLifetimeService();
+            ClientSponsor clientHTTPSponsor = new ClientSponsor();
+            lease.Register(clientHTTPSponsor);
         }
 
         private void button1_Click(object sender, EventArgs e) // нажатие на кнопку "Войти"
@@ -51,10 +55,10 @@ namespace Truckers
             else
             {
                 // вызов метода Autorization у удаленного объекта
-                string result = remoteTCP.Autorization(textBox1.Text, textBox2.Text);
+                string result = remoteHTTP.Autorization(textBox1.Text, textBox2.Text);
                 
                 // если пользователей с таким логином и паролем нет
-                if (result == "0")
+                if (result == "1")
                 {
                     this.TopMost = true;
                     MessageBox.Show(
@@ -66,13 +70,19 @@ namespace Truckers
                             MessageBoxOptions.DefaultDesktopOnly);
                     this.TopMost = false;
                 }
-                // если такой пользователь найден
-                else
+                // если такой пользователь найдени он логист
+                else if (result == "logist")
                 {
-                    // переход к другой форме
+                    // переход к форме логиста
                     FormLogist formLogist = new FormLogist(this);
                     formLogist.Show();
                     this.Hide();
+                }
+                // если такой пользователь найдени он водитель
+                else if (result == "driver")
+                {
+                    // заглушка
+                    System.Diagnostics.Debug.WriteLine("Вход от имени водителя");
                 }
             }
         }
@@ -95,7 +105,7 @@ namespace Truckers
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) // нажатие на кнопку "Зарегистрироваться"
         {
             // открытие формы регистрации
-            FormRegister formRegister = new FormRegister(this);
+            FormRegister formRegister = new FormRegister(this, remoteHTTP);
             formRegister.Show();
             // скрытие это формы авторизации
             this.Hide();

@@ -31,24 +31,25 @@ namespace Truckers
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormLogist));
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.IDlabel = new System.Windows.Forms.Label();
-            this.IDcomboBox = new System.Windows.Forms.ComboBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
+            this.label_ID = new System.Windows.Forms.Label();
+            this.comboBox_ID = new System.Windows.Forms.ComboBox();
+            this.labelDriverID = new System.Windows.Forms.Label();
+            this.labelStatus = new System.Windows.Forms.Label();
+            this.labelCargo = new System.Windows.Forms.Label();
+            this.labelWeight = new System.Windows.Forms.Label();
+            this.labelFrom = new System.Windows.Forms.Label();
+            this.labelTo = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.textBoxDriverID = new System.Windows.Forms.TextBox();
+            this.textBoxStatus = new System.Windows.Forms.TextBox();
+            this.textBoxCargo = new System.Windows.Forms.TextBox();
+            this.textBoxWeight = new System.Windows.Forms.TextBox();
+            this.textBoxFrom = new System.Windows.Forms.TextBox();
+            this.textBoxTo = new System.Windows.Forms.TextBox();
             this.labelLine = new System.Windows.Forms.Label();
+            this.button4 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -62,99 +63,99 @@ namespace Truckers
             this.pictureBox1.TabIndex = 2;
             this.pictureBox1.TabStop = false;
             // 
-            // IDlabel
+            // label_ID
             // 
-            this.IDlabel.AutoSize = true;
-            this.IDlabel.Font = new System.Drawing.Font("Montserrat", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.IDlabel.ForeColor = System.Drawing.Color.White;
-            this.IDlabel.Location = new System.Drawing.Point(65, 192);
-            this.IDlabel.Name = "IDlabel";
-            this.IDlabel.Size = new System.Drawing.Size(41, 32);
-            this.IDlabel.TabIndex = 4;
-            this.IDlabel.Text = "ID";
+            this.label_ID.AutoSize = true;
+            this.label_ID.Font = new System.Drawing.Font("Montserrat", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label_ID.ForeColor = System.Drawing.Color.White;
+            this.label_ID.Location = new System.Drawing.Point(65, 192);
+            this.label_ID.Name = "label_ID";
+            this.label_ID.Size = new System.Drawing.Size(42, 33);
+            this.label_ID.TabIndex = 4;
+            this.label_ID.Text = "ID";
             // 
-            // IDcomboBox
+            // comboBox_ID
             // 
-            this.IDcomboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.IDcomboBox.Font = new System.Drawing.Font("Montserrat", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.IDcomboBox.FormattingEnabled = true;
-            this.IDcomboBox.Location = new System.Drawing.Point(120, 190);
-            this.IDcomboBox.Name = "IDcomboBox";
-            this.IDcomboBox.Size = new System.Drawing.Size(200, 40);
-            this.IDcomboBox.TabIndex = 5;
+            this.comboBox_ID.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_ID.Font = new System.Drawing.Font("Montserrat", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.comboBox_ID.FormattingEnabled = true;
+            this.comboBox_ID.Location = new System.Drawing.Point(120, 190);
+            this.comboBox_ID.Name = "comboBox_ID";
+            this.comboBox_ID.Size = new System.Drawing.Size(200, 40);
+            this.comboBox_ID.TabIndex = 5;
             // 
-            // label5
+            // labelDriverID
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Montserrat", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(40, 260);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(84, 32);
-            this.label5.TabIndex = 9;
-            this.label5.Text = "label5";
+            this.labelDriverID.AutoSize = true;
+            this.labelDriverID.Font = new System.Drawing.Font("Montserrat", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelDriverID.ForeColor = System.Drawing.Color.White;
+            this.labelDriverID.Location = new System.Drawing.Point(40, 260);
+            this.labelDriverID.Name = "labelDriverID";
+            this.labelDriverID.Size = new System.Drawing.Size(166, 33);
+            this.labelDriverID.TabIndex = 9;
+            this.labelDriverID.Text = "ID водителя";
             // 
-            // label6
+            // labelStatus
             // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Montserrat", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label6.ForeColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(66, 353);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(85, 32);
-            this.label6.TabIndex = 10;
-            this.label6.Text = "label6";
+            this.labelStatus.AutoSize = true;
+            this.labelStatus.Font = new System.Drawing.Font("Montserrat", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelStatus.ForeColor = System.Drawing.Color.White;
+            this.labelStatus.Location = new System.Drawing.Point(40, 350);
+            this.labelStatus.Name = "labelStatus";
+            this.labelStatus.Size = new System.Drawing.Size(95, 33);
+            this.labelStatus.TabIndex = 10;
+            this.labelStatus.Text = "Статус";
             // 
-            // label7
+            // labelCargo
             // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Montserrat", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label7.ForeColor = System.Drawing.Color.White;
-            this.label7.Location = new System.Drawing.Point(51, 440);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(85, 32);
-            this.label7.TabIndex = 11;
-            this.label7.Text = "label7";
+            this.labelCargo.AutoSize = true;
+            this.labelCargo.Font = new System.Drawing.Font("Montserrat", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelCargo.ForeColor = System.Drawing.Color.White;
+            this.labelCargo.Location = new System.Drawing.Point(40, 440);
+            this.labelCargo.Name = "labelCargo";
+            this.labelCargo.Size = new System.Drawing.Size(281, 33);
+            this.labelCargo.TabIndex = 11;
+            this.labelCargo.Text = "Наименование груза";
             // 
-            // label8
+            // labelWeight
             // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Montserrat", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label8.ForeColor = System.Drawing.Color.White;
-            this.label8.Location = new System.Drawing.Point(79, 534);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(86, 32);
-            this.label8.TabIndex = 12;
-            this.label8.Text = "label8";
+            this.labelWeight.AutoSize = true;
+            this.labelWeight.Font = new System.Drawing.Font("Montserrat", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelWeight.ForeColor = System.Drawing.Color.White;
+            this.labelWeight.Location = new System.Drawing.Point(40, 530);
+            this.labelWeight.Name = "labelWeight";
+            this.labelWeight.Size = new System.Drawing.Size(278, 33);
+            this.labelWeight.TabIndex = 12;
+            this.labelWeight.Text = "Масса груза в тоннах";
             // 
-            // label9
+            // labelFrom
             // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Montserrat", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label9.ForeColor = System.Drawing.Color.White;
-            this.label9.Location = new System.Drawing.Point(95, 608);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(85, 32);
-            this.label9.TabIndex = 13;
-            this.label9.Text = "label9";
+            this.labelFrom.AutoSize = true;
+            this.labelFrom.Font = new System.Drawing.Font("Montserrat", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelFrom.ForeColor = System.Drawing.Color.White;
+            this.labelFrom.Location = new System.Drawing.Point(40, 620);
+            this.labelFrom.Name = "labelFrom";
+            this.labelFrom.Size = new System.Drawing.Size(260, 33);
+            this.labelFrom.TabIndex = 13;
+            this.labelFrom.Text = "Пункт отправления";
             // 
-            // label10
+            // labelTo
             // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Montserrat", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label10.ForeColor = System.Drawing.Color.White;
-            this.label10.Location = new System.Drawing.Point(79, 682);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(94, 32);
-            this.label10.TabIndex = 14;
-            this.label10.Text = "label10";
+            this.labelTo.AutoSize = true;
+            this.labelTo.Font = new System.Drawing.Font("Montserrat", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelTo.ForeColor = System.Drawing.Color.White;
+            this.labelTo.Location = new System.Drawing.Point(40, 710);
+            this.labelTo.Name = "labelTo";
+            this.labelTo.Size = new System.Drawing.Size(245, 33);
+            this.labelTo.TabIndex = 14;
+            this.labelTo.Text = "Пункт назначения";
             // 
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Century Gothic", 13.8F);
-            this.button1.Location = new System.Drawing.Point(114, 740);
+            this.button1.Location = new System.Drawing.Point(32, 807);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(159, 51);
+            this.button1.Size = new System.Drawing.Size(155, 50);
             this.button1.TabIndex = 15;
             this.button1.Text = "button1";
             this.button1.UseVisualStyleBackColor = true;
@@ -162,9 +163,9 @@ namespace Truckers
             // button2
             // 
             this.button2.Font = new System.Drawing.Font("Century Gothic", 13.8F);
-            this.button2.Location = new System.Drawing.Point(141, 797);
+            this.button2.Location = new System.Drawing.Point(192, 807);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(159, 51);
+            this.button2.Size = new System.Drawing.Size(155, 50);
             this.button2.TabIndex = 16;
             this.button2.Text = "button2";
             this.button2.UseVisualStyleBackColor = true;
@@ -172,60 +173,60 @@ namespace Truckers
             // button3
             // 
             this.button3.Font = new System.Drawing.Font("Century Gothic", 13.8F);
-            this.button3.Location = new System.Drawing.Point(114, 872);
+            this.button3.Location = new System.Drawing.Point(32, 863);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(159, 51);
+            this.button3.Size = new System.Drawing.Size(155, 50);
             this.button3.TabIndex = 17;
             this.button3.Text = "button3";
             this.button3.UseVisualStyleBackColor = true;
             // 
-            // textBox2
+            // textBoxDriverID
             // 
-            this.textBox2.Font = new System.Drawing.Font("Montserrat", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBox2.Location = new System.Drawing.Point(55, 330);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(150, 36);
-            this.textBox2.TabIndex = 18;
+            this.textBoxDriverID.Font = new System.Drawing.Font("Montserrat", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBoxDriverID.Location = new System.Drawing.Point(32, 300);
+            this.textBoxDriverID.Name = "textBoxDriverID";
+            this.textBoxDriverID.Size = new System.Drawing.Size(315, 36);
+            this.textBoxDriverID.TabIndex = 18;
             // 
-            // textBox3
+            // textBoxStatus
             // 
-            this.textBox3.Font = new System.Drawing.Font("Montserrat", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBox3.Location = new System.Drawing.Point(46, 388);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(150, 36);
-            this.textBox3.TabIndex = 19;
+            this.textBoxStatus.Font = new System.Drawing.Font("Montserrat", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBoxStatus.Location = new System.Drawing.Point(32, 390);
+            this.textBoxStatus.Name = "textBoxStatus";
+            this.textBoxStatus.Size = new System.Drawing.Size(315, 36);
+            this.textBoxStatus.TabIndex = 19;
             // 
-            // textBox4
+            // textBoxCargo
             // 
-            this.textBox4.Font = new System.Drawing.Font("Montserrat", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBox4.Location = new System.Drawing.Point(46, 477);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(150, 36);
-            this.textBox4.TabIndex = 20;
+            this.textBoxCargo.Font = new System.Drawing.Font("Montserrat", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBoxCargo.Location = new System.Drawing.Point(32, 480);
+            this.textBoxCargo.Name = "textBoxCargo";
+            this.textBoxCargo.Size = new System.Drawing.Size(315, 36);
+            this.textBoxCargo.TabIndex = 20;
             // 
-            // textBox5
+            // textBoxWeight
             // 
-            this.textBox5.Font = new System.Drawing.Font("Montserrat", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBox5.Location = new System.Drawing.Point(59, 569);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(150, 36);
-            this.textBox5.TabIndex = 21;
+            this.textBoxWeight.Font = new System.Drawing.Font("Montserrat", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBoxWeight.Location = new System.Drawing.Point(32, 570);
+            this.textBoxWeight.Name = "textBoxWeight";
+            this.textBoxWeight.Size = new System.Drawing.Size(315, 36);
+            this.textBoxWeight.TabIndex = 21;
             // 
-            // textBox6
+            // textBoxFrom
             // 
-            this.textBox6.Font = new System.Drawing.Font("Montserrat", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBox6.Location = new System.Drawing.Point(59, 643);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(150, 36);
-            this.textBox6.TabIndex = 22;
+            this.textBoxFrom.Font = new System.Drawing.Font("Montserrat", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBoxFrom.Location = new System.Drawing.Point(32, 660);
+            this.textBoxFrom.Name = "textBoxFrom";
+            this.textBoxFrom.Size = new System.Drawing.Size(315, 36);
+            this.textBoxFrom.TabIndex = 22;
             // 
-            // textBox7
+            // textBoxTo
             // 
-            this.textBox7.Font = new System.Drawing.Font("Montserrat", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBox7.Location = new System.Drawing.Point(55, 717);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(150, 36);
-            this.textBox7.TabIndex = 23;
+            this.textBoxTo.Font = new System.Drawing.Font("Montserrat", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBoxTo.Location = new System.Drawing.Point(32, 750);
+            this.textBoxTo.Name = "textBoxTo";
+            this.textBoxTo.Size = new System.Drawing.Size(315, 36);
+            this.textBoxTo.TabIndex = 23;
             // 
             // labelLine
             // 
@@ -239,30 +240,41 @@ namespace Truckers
             this.labelLine.Text = "________Логист________";
             this.labelLine.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
+            // button4
+            // 
+            this.button4.Font = new System.Drawing.Font("Century Gothic", 13.8F);
+            this.button4.Location = new System.Drawing.Point(192, 863);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(155, 50);
+            this.button4.TabIndex = 25;
+            this.button4.Text = "button4";
+            this.button4.UseVisualStyleBackColor = true;
+            // 
             // FormLogist
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(45)))), ((int)(((byte)(90)))));
-            this.ClientSize = new System.Drawing.Size(382, 1055);
+            this.ClientSize = new System.Drawing.Size(382, 943);
+            this.Controls.Add(this.button4);
             this.Controls.Add(this.labelLine);
-            this.Controls.Add(this.textBox7);
-            this.Controls.Add(this.textBox6);
-            this.Controls.Add(this.textBox5);
-            this.Controls.Add(this.textBox4);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.textBoxTo);
+            this.Controls.Add(this.textBoxFrom);
+            this.Controls.Add(this.textBoxWeight);
+            this.Controls.Add(this.textBoxCargo);
+            this.Controls.Add(this.textBoxStatus);
+            this.Controls.Add(this.textBoxDriverID);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.label10);
-            this.Controls.Add(this.label9);
-            this.Controls.Add(this.label8);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.IDcomboBox);
-            this.Controls.Add(this.IDlabel);
+            this.Controls.Add(this.labelTo);
+            this.Controls.Add(this.labelFrom);
+            this.Controls.Add(this.labelWeight);
+            this.Controls.Add(this.labelCargo);
+            this.Controls.Add(this.labelStatus);
+            this.Controls.Add(this.labelDriverID);
+            this.Controls.Add(this.comboBox_ID);
+            this.Controls.Add(this.label_ID);
             this.Controls.Add(this.pictureBox1);
             this.Font = new System.Drawing.Font("Century Gothic", 7.8F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -279,23 +291,24 @@ namespace Truckers
         #endregion
 
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Label IDlabel;
-        private System.Windows.Forms.ComboBox IDcomboBox;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label_ID;
+        private System.Windows.Forms.ComboBox comboBox_ID;
+        private System.Windows.Forms.Label labelDriverID;
+        private System.Windows.Forms.Label labelStatus;
+        private System.Windows.Forms.Label labelCargo;
+        private System.Windows.Forms.Label labelWeight;
+        private System.Windows.Forms.Label labelFrom;
+        private System.Windows.Forms.Label labelTo;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox6;
-        private System.Windows.Forms.TextBox textBox7;
+        private System.Windows.Forms.TextBox textBoxDriverID;
+        private System.Windows.Forms.TextBox textBoxStatus;
+        private System.Windows.Forms.TextBox textBoxCargo;
+        private System.Windows.Forms.TextBox textBoxWeight;
+        private System.Windows.Forms.TextBox textBoxFrom;
+        private System.Windows.Forms.TextBox textBoxTo;
         private System.Windows.Forms.Label labelLine;
+        private System.Windows.Forms.Button button4;
     }
 }

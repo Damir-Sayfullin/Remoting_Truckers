@@ -17,22 +17,16 @@ namespace Truckers
 {
     public partial class FormRegister : Form
     {
-        public RemoteObjectHTTP remoteHTTP; // удаленный объект
         HttpChannel channel = new HttpChannel(new Dictionary<string, string> { { "port", "0" } }, new BinaryClientFormatterSinkProvider(), new BinaryServerFormatterSinkProvider { TypeFilterLevel = TypeFilterLevel.Full });
 
         bool password_show = false; // показывать пароль
+        public RemoteObjectHTTP remoteHTTP; // удаленный объект
         private FormLogin formLogin; // ссылка на форму авторизации
-        public FormRegister(FormLogin formLogin)
+        public FormRegister(FormLogin formLogin, RemoteObjectHTTP remoteHTTP)
         {
             InitializeComponent();
             this.formLogin = formLogin; // присваивание ссылки на форму авторизации
-            ConnectToServer();
-        }
-
-        private void ConnectToServer() // установка соединения с сервером
-        {
-            ChannelServices.RegisterChannel(channel, false);
-            remoteHTTP = new RemoteObjectHTTP();
+            this.remoteHTTP = remoteHTTP; 
             ILease lease = (ILease)remoteHTTP.InitializeLifetimeService();
             ClientSponsor clientHTTPSponsor = new ClientSponsor();
             lease.Register(clientHTTPSponsor);
