@@ -4,6 +4,8 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.Remoting;
+using System.Runtime.Remoting.Lifetime;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -13,11 +15,22 @@ namespace Truckers
 {
     public partial class FormLogin : Form
     {
+        public RemoteObjectTCP remoteTCP;
         bool password_show = false;
 
         public FormLogin()
         {
             InitializeComponent();
+            ConnectToRemoteObject();
+        }
+
+        private void ConnectToRemoteObject()
+        {
+            RemotingConfiguration.Configure("C:/My Files/Универ/3 курс/Технологии программирования/TP_Truckers/Truckers/ClientConfig.config", false);
+            remoteTCP = new RemoteObjectTCP();
+            ILease lease = (ILease)remoteTCP.InitializeLifetimeService();
+            ClientSponsor clientTCPSponsor = new ClientSponsor();
+            lease.Register(clientTCPSponsor);
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -29,7 +42,7 @@ namespace Truckers
                         "Введите логин и пароль!",
                         "Ошибка",
                         MessageBoxButtons.OK,
-                        MessageBoxIcon.Warning,
+                        MessageBoxIcon.Error,
                         MessageBoxDefaultButton.Button1,
                         MessageBoxOptions.DefaultDesktopOnly);
                 this.TopMost = false;
@@ -38,10 +51,7 @@ namespace Truckers
             {
                 try
                 {
-                    IRemoteObject remoteObject = (IRemoteObject)Activator.GetObject(
-                            typeof(IRemoteObject),
-                            "tcp://localhost:8080/RemoteObject.rem");
-                    string result = remoteObject.Autorization(textBox1.Text, textBox2.Text);
+                    string result = remoteTCP.Autorization(textBox1.Text, textBox2.Text);
                 
                     if (result == "0")
                     {
