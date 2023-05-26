@@ -15,8 +15,8 @@ namespace Truckers
 {
     public partial class FormLogin : Form
     {
-        public RemoteObjectTCP remoteTCP;
-        bool password_show = false;
+        public RemoteObjectTCP remoteTCP; // удаленный объект
+        bool password_show = false; // показывать пароль
 
         public FormLogin()
         {
@@ -24,7 +24,7 @@ namespace Truckers
             ConnectToServer();
         }
 
-        private void ConnectToServer()
+        private void ConnectToServer() // установка соединения с сервером
         {
             RemotingConfiguration.Configure("C:/My Files/Универ/3 курс/Технологии программирования/TP_Truckers/Truckers/ClientConfig.config", false);
             remoteTCP = new RemoteObjectTCP();
@@ -33,8 +33,9 @@ namespace Truckers
             lease.Register(clientTCPSponsor);
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e) // нажатие на кнопку "Войти"
         {
+            // проверка на пустные поля
             if (textBox1.Text == "" || textBox2.Text == "")
             {
                 this.TopMost = true;
@@ -49,34 +50,15 @@ namespace Truckers
             }
             else
             {
-                try
-                {
-                    string result = remoteTCP.Autorization(textBox1.Text, textBox2.Text);
+                // вызов метода Autorization у удаленного объекта
+                string result = remoteTCP.Autorization(textBox1.Text, textBox2.Text);
                 
-                    if (result == "0")
-                    {
-                        this.TopMost = true;
-                        MessageBox.Show(
-                                "Неверный логин или пароль!",
-                                "Ошибка",
-                                MessageBoxButtons.OK,
-                                MessageBoxIcon.Error,
-                                MessageBoxDefaultButton.Button1,
-                                MessageBoxOptions.DefaultDesktopOnly);
-                        this.TopMost = false;
-                    }
-                    else
-                    {
-                        FormLogist formLogist = new FormLogist(this);
-                        formLogist.Show();
-                        this.Hide();
-                    }
-                }
-                catch
+                // если пользователей с таким логином и паролем нет
+                if (result == "0")
                 {
                     this.TopMost = true;
                     MessageBox.Show(
-                            "Не удалось подключиться к серверу!",
+                            "Неверный логин или пароль!",
                             "Ошибка",
                             MessageBoxButtons.OK,
                             MessageBoxIcon.Error,
@@ -84,10 +66,18 @@ namespace Truckers
                             MessageBoxOptions.DefaultDesktopOnly);
                     this.TopMost = false;
                 }
+                // если такой пользователь найден
+                else
+                {
+                    // переход к другой форме
+                    FormLogist formLogist = new FormLogist(this);
+                    formLogist.Show();
+                    this.Hide();
+                }
             }
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void button2_Click(object sender, EventArgs e)  // нажатие на кнопку скрытия пароля
         {
             password_show = !password_show;
             if (password_show)
@@ -102,10 +92,12 @@ namespace Truckers
             }
         }
 
-        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) // нажатие на кнопку "Зарегистрироваться"
         {
+            // открытие формы регистрации
             FormRegister formRegister = new FormRegister(this);
             formRegister.Show();
+            // скрытие это формы авторизации
             this.Hide();
         }
     }

@@ -9,17 +9,7 @@ namespace Server
     [Serializable]
     public class RemoteObjectTCP : MarshalByRefObject, IRemoteObject
     {
-        // 2 канала связи с защитой
-        // один с конфига, один с кода
-        // должен быть спонсор
-        // в ремотинге только интерфейс
-        // в ремотинге часть программы должен быть у клиента
-
-        // в асп кода у клиента нет
-
-        // на этой неделе
-        // вторник 9 40 11 20 353
-
+        // ссылка на базу данных
         private string connectionString = "Provider=Microsoft.Jet.OleDb.4.0;Data Source=C:/My Files/Универ/3 курс/Технологии программирования/TP_Truckers/Truckers/data/TruckersDB.mdb";
 
         public RemoteObjectTCP()
@@ -31,41 +21,61 @@ namespace Server
             Console.WriteLine("Удаленный объект TCP уничтожен!");
         }
 
+        /// <summary>
+        /// Поиск пользователей по логину и паролю
+        /// </summary>
+        /// <returns>
+        /// Количество пользователей с таким логином и паролем
+        /// </returns>
         public string Autorization(string login, string password)
         {
             using (OleDbConnection connection = new OleDbConnection(connectionString))
             {
+                // открытие соединения
                 connection.Open();
 
-                DataTable dataTable = new DataTable();
+                DataTable dataTable = new DataTable(); // создание таблицы
                 OleDbDataAdapter adapter = new OleDbDataAdapter(string.Format("SELECT * FROM Users WHERE Login='{0}' AND Password='{1}'", login, password), connection);
-                adapter.Fill(dataTable);
+                adapter.Fill(dataTable); // запись результатов выполнения запроса в таблицу
 
+                // закрытие соединения
                 connection.Close();
 
+                // возвращение количества строк
                 return Convert.ToString(dataTable.Rows.Count);
             }
         }
 
+        /// <summary>
+        /// Регистрация пользователя
+        /// </summary>
+        /// <returns>
+        /// "0" - если регистрация успешна
+        /// "1" - если пользователь с таким логином уже существует
+        /// </returns>
         public string Registration(string name, string login, string password, string post)
         {
             using (OleDbConnection connection = new OleDbConnection(connectionString))
             {
+                // открытие соединения
                 connection.Open();
 
                 // проверка на повтор логина
-                DataTable dataTable = new DataTable();
+                DataTable dataTable = new DataTable(); // создание таблицы
                 OleDbDataAdapter adapter = new OleDbDataAdapter("SELECT * FROM Users WHERE Login='" + login + "'", connection);
-                adapter.Fill(dataTable);
+                adapter.Fill(dataTable); // запись результатов выполнения запроса в таблицу
 
+                // если пользователей с таким логином не существует
                 if (dataTable.Rows.Count == 0)
                 {
+                    // регистрация нового пользователя
                     string sql = string.Format("INSERT INTO Users ([Username], [Post], [Login], [Password]) VALUES ('{0}', '{1}', '{2}', '{3}')", name, post, login, password);
                     OleDbCommand cmd = new OleDbCommand(sql, connection);
                     cmd.ExecuteNonQuery();
                     connection.Close();
                     return "0";
                 }
+                // если пользователь с таким логином уже существует
                 else
                 {
                     connection.Close();
