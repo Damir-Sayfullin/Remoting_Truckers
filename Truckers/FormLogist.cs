@@ -15,13 +15,16 @@ namespace Truckers
 {
     public partial class FormLogist : Form
     {
-        public RemoteObjectTCP remoteTCP; // удаленный объект
-        private FormLogin formLogin; // ссылка на форму авторизации
+        RemoteObjectTCP remoteTCP; // удаленный объект
+        FormLogin formLogin; // ссылка на форму авторизации
+
+        DataTable cargoDataTable;
         public FormLogist(FormLogin formLogin)
         {
             InitializeComponent();
             this.formLogin = formLogin; // присваивание ссылки на форму авторизации
             ConnectToServer();
+            CargoReload();
         }
 
         private void ConnectToServer() // установка соединения с сервером
@@ -33,6 +36,44 @@ namespace Truckers
             lease.Register(clientTCPSponsor);
         }
 
+        private void CargoReload() // обновление таблицы
+        {
+            // получение данных 
+            cargoDataTable = remoteTCP.Logist_CargoReload();
+            // очистка выпадающего списка
+            comboBox_ID.Items.Clear();
+
+            // проходим по каждой строке в cargoDataTable
+            foreach (DataRow row in cargoDataTable.Rows)
+            {
+                // получение значения поля ID из текущей строки
+                object value = row["ID"];
+
+                // добавление значения в comboBox_ID
+                comboBox_ID.Items.Add(value);
+            }
+        }
         
+        private void buttonReload_Click(object sender, EventArgs e) // при нажатии на кнопку "Обновить"
+        {
+            CargoReload();
+        }
+
+        private void comboBox_ID_SelectedValueChanged(object sender, EventArgs e) // при выборе ID в выпадающем списке
+        {
+            // поиск строк с выбранным ID
+            DataRow[] IDRow = cargoDataTable.Select(String.Format("ID = '{0}'", comboBox_ID.SelectedItem.ToString()));
+            foreach (DataRow row in IDRow)
+            {
+                // изменение полей в соответсвии с выбраным ID
+                textBoxDriverID.Text = row["DriverID"].ToString();
+                textBoxStatus.Text = row["Status"].ToString();
+                textBoxCargo.Text = row["Cargo"].ToString();
+                textBoxWeight.Text = row["Weight"].ToString();
+                textBoxFrom.Text = row["From"].ToString();
+                textBoxTo.Text = row["To"].ToString();
+            }
+
+        }
     }
 }

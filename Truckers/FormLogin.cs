@@ -18,7 +18,7 @@ namespace Truckers
 {
     public partial class FormLogin : Form
     {
-        public RemoteObjectHTTP remoteHTTP; // удаленный объект
+        RemoteObjectHTTP remoteHTTP; // удаленный объект
         HttpChannel channel = new HttpChannel(new Dictionary<string, string> { { "port", "0" } }, new BinaryClientFormatterSinkProvider(), new BinaryServerFormatterSinkProvider { TypeFilterLevel = TypeFilterLevel.Full });
 
         bool password_show = false;

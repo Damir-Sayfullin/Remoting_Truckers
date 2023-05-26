@@ -96,12 +96,6 @@ namespace Server
             }
         }
 
-        public DataTable ReloadCargo()
-        {
-            DataTable dataTable = new DataTable();
-            return dataTable;
-        }
-
         public byte[] Upload(string path)
         {
             return File.ReadAllBytes("Sources\\" + path);

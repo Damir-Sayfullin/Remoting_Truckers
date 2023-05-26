@@ -39,7 +39,7 @@ namespace Truckers
             this.labelWeight = new System.Windows.Forms.Label();
             this.labelFrom = new System.Windows.Forms.Label();
             this.labelTo = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.buttonReload = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.textBoxDriverID = new System.Windows.Forms.TextBox();
@@ -50,6 +50,7 @@ namespace Truckers
             this.textBoxTo = new System.Windows.Forms.TextBox();
             this.labelLine = new System.Windows.Forms.Label();
             this.button4 = new System.Windows.Forms.Button();
+            this.buttonExit = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -60,7 +61,7 @@ namespace Truckers
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(400, 200);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 2;
+            this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
             // label_ID
@@ -71,7 +72,7 @@ namespace Truckers
             this.label_ID.Location = new System.Drawing.Point(65, 192);
             this.label_ID.Name = "label_ID";
             this.label_ID.Size = new System.Drawing.Size(42, 33);
-            this.label_ID.TabIndex = 4;
+            this.label_ID.TabIndex = 0;
             this.label_ID.Text = "ID";
             // 
             // comboBox_ID
@@ -82,7 +83,8 @@ namespace Truckers
             this.comboBox_ID.Location = new System.Drawing.Point(120, 190);
             this.comboBox_ID.Name = "comboBox_ID";
             this.comboBox_ID.Size = new System.Drawing.Size(200, 40);
-            this.comboBox_ID.TabIndex = 5;
+            this.comboBox_ID.TabIndex = 1;
+            this.comboBox_ID.SelectedValueChanged += new System.EventHandler(this.comboBox_ID_SelectedValueChanged);
             // 
             // labelDriverID
             // 
@@ -92,7 +94,7 @@ namespace Truckers
             this.labelDriverID.Location = new System.Drawing.Point(40, 260);
             this.labelDriverID.Name = "labelDriverID";
             this.labelDriverID.Size = new System.Drawing.Size(166, 33);
-            this.labelDriverID.TabIndex = 9;
+            this.labelDriverID.TabIndex = 0;
             this.labelDriverID.Text = "ID водителя";
             // 
             // labelStatus
@@ -103,7 +105,7 @@ namespace Truckers
             this.labelStatus.Location = new System.Drawing.Point(40, 350);
             this.labelStatus.Name = "labelStatus";
             this.labelStatus.Size = new System.Drawing.Size(95, 33);
-            this.labelStatus.TabIndex = 10;
+            this.labelStatus.TabIndex = 0;
             this.labelStatus.Text = "Статус";
             // 
             // labelCargo
@@ -114,7 +116,7 @@ namespace Truckers
             this.labelCargo.Location = new System.Drawing.Point(40, 440);
             this.labelCargo.Name = "labelCargo";
             this.labelCargo.Size = new System.Drawing.Size(281, 33);
-            this.labelCargo.TabIndex = 11;
+            this.labelCargo.TabIndex = 0;
             this.labelCargo.Text = "Наименование груза";
             // 
             // labelWeight
@@ -125,7 +127,7 @@ namespace Truckers
             this.labelWeight.Location = new System.Drawing.Point(40, 530);
             this.labelWeight.Name = "labelWeight";
             this.labelWeight.Size = new System.Drawing.Size(278, 33);
-            this.labelWeight.TabIndex = 12;
+            this.labelWeight.TabIndex = 0;
             this.labelWeight.Text = "Масса груза в тоннах";
             // 
             // labelFrom
@@ -136,7 +138,7 @@ namespace Truckers
             this.labelFrom.Location = new System.Drawing.Point(40, 620);
             this.labelFrom.Name = "labelFrom";
             this.labelFrom.Size = new System.Drawing.Size(260, 33);
-            this.labelFrom.TabIndex = 13;
+            this.labelFrom.TabIndex = 0;
             this.labelFrom.Text = "Пункт отправления";
             // 
             // labelTo
@@ -147,18 +149,19 @@ namespace Truckers
             this.labelTo.Location = new System.Drawing.Point(40, 710);
             this.labelTo.Name = "labelTo";
             this.labelTo.Size = new System.Drawing.Size(245, 33);
-            this.labelTo.TabIndex = 14;
+            this.labelTo.TabIndex = 0;
             this.labelTo.Text = "Пункт назначения";
             // 
-            // button1
+            // buttonReload
             // 
-            this.button1.Font = new System.Drawing.Font("Century Gothic", 13.8F);
-            this.button1.Location = new System.Drawing.Point(32, 807);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(155, 50);
-            this.button1.TabIndex = 15;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
+            this.buttonReload.Font = new System.Drawing.Font("Century Gothic", 13.8F);
+            this.buttonReload.Location = new System.Drawing.Point(32, 807);
+            this.buttonReload.Name = "buttonReload";
+            this.buttonReload.Size = new System.Drawing.Size(155, 50);
+            this.buttonReload.TabIndex = 8;
+            this.buttonReload.Text = "Обновить";
+            this.buttonReload.UseVisualStyleBackColor = true;
+            this.buttonReload.Click += new System.EventHandler(this.buttonReload_Click);
             // 
             // button2
             // 
@@ -166,7 +169,7 @@ namespace Truckers
             this.button2.Location = new System.Drawing.Point(192, 807);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(155, 50);
-            this.button2.TabIndex = 16;
+            this.button2.TabIndex = 9;
             this.button2.Text = "button2";
             this.button2.UseVisualStyleBackColor = true;
             // 
@@ -176,7 +179,7 @@ namespace Truckers
             this.button3.Location = new System.Drawing.Point(32, 863);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(155, 50);
-            this.button3.TabIndex = 17;
+            this.button3.TabIndex = 10;
             this.button3.Text = "button3";
             this.button3.UseVisualStyleBackColor = true;
             // 
@@ -186,7 +189,7 @@ namespace Truckers
             this.textBoxDriverID.Location = new System.Drawing.Point(32, 300);
             this.textBoxDriverID.Name = "textBoxDriverID";
             this.textBoxDriverID.Size = new System.Drawing.Size(315, 36);
-            this.textBoxDriverID.TabIndex = 18;
+            this.textBoxDriverID.TabIndex = 2;
             // 
             // textBoxStatus
             // 
@@ -194,7 +197,7 @@ namespace Truckers
             this.textBoxStatus.Location = new System.Drawing.Point(32, 390);
             this.textBoxStatus.Name = "textBoxStatus";
             this.textBoxStatus.Size = new System.Drawing.Size(315, 36);
-            this.textBoxStatus.TabIndex = 19;
+            this.textBoxStatus.TabIndex = 3;
             // 
             // textBoxCargo
             // 
@@ -202,7 +205,7 @@ namespace Truckers
             this.textBoxCargo.Location = new System.Drawing.Point(32, 480);
             this.textBoxCargo.Name = "textBoxCargo";
             this.textBoxCargo.Size = new System.Drawing.Size(315, 36);
-            this.textBoxCargo.TabIndex = 20;
+            this.textBoxCargo.TabIndex = 4;
             // 
             // textBoxWeight
             // 
@@ -210,7 +213,7 @@ namespace Truckers
             this.textBoxWeight.Location = new System.Drawing.Point(32, 570);
             this.textBoxWeight.Name = "textBoxWeight";
             this.textBoxWeight.Size = new System.Drawing.Size(315, 36);
-            this.textBoxWeight.TabIndex = 21;
+            this.textBoxWeight.TabIndex = 5;
             // 
             // textBoxFrom
             // 
@@ -218,7 +221,7 @@ namespace Truckers
             this.textBoxFrom.Location = new System.Drawing.Point(32, 660);
             this.textBoxFrom.Name = "textBoxFrom";
             this.textBoxFrom.Size = new System.Drawing.Size(315, 36);
-            this.textBoxFrom.TabIndex = 22;
+            this.textBoxFrom.TabIndex = 6;
             // 
             // textBoxTo
             // 
@@ -226,7 +229,7 @@ namespace Truckers
             this.textBoxTo.Location = new System.Drawing.Point(32, 750);
             this.textBoxTo.Name = "textBoxTo";
             this.textBoxTo.Size = new System.Drawing.Size(315, 36);
-            this.textBoxTo.TabIndex = 23;
+            this.textBoxTo.TabIndex = 7;
             // 
             // labelLine
             // 
@@ -236,7 +239,7 @@ namespace Truckers
             this.labelLine.Location = new System.Drawing.Point(-10, 120);
             this.labelLine.Name = "labelLine";
             this.labelLine.Size = new System.Drawing.Size(413, 46);
-            this.labelLine.TabIndex = 24;
+            this.labelLine.TabIndex = 0;
             this.labelLine.Text = "________Логист________";
             this.labelLine.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
@@ -246,16 +249,27 @@ namespace Truckers
             this.button4.Location = new System.Drawing.Point(192, 863);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(155, 50);
-            this.button4.TabIndex = 25;
+            this.button4.TabIndex = 11;
             this.button4.Text = "button4";
             this.button4.UseVisualStyleBackColor = true;
+            // 
+            // buttonExit
+            // 
+            this.buttonExit.Font = new System.Drawing.Font("Century Gothic", 13.8F);
+            this.buttonExit.Location = new System.Drawing.Point(32, 942);
+            this.buttonExit.Name = "buttonExit";
+            this.buttonExit.Size = new System.Drawing.Size(315, 50);
+            this.buttonExit.TabIndex = 12;
+            this.buttonExit.Text = "Выйти из системы";
+            this.buttonExit.UseVisualStyleBackColor = true;
             // 
             // FormLogist
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(45)))), ((int)(((byte)(90)))));
-            this.ClientSize = new System.Drawing.Size(382, 943);
+            this.ClientSize = new System.Drawing.Size(382, 1015);
+            this.Controls.Add(this.buttonExit);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.labelLine);
             this.Controls.Add(this.textBoxTo);
@@ -266,7 +280,7 @@ namespace Truckers
             this.Controls.Add(this.textBoxDriverID);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.buttonReload);
             this.Controls.Add(this.labelTo);
             this.Controls.Add(this.labelFrom);
             this.Controls.Add(this.labelWeight);
@@ -299,7 +313,7 @@ namespace Truckers
         private System.Windows.Forms.Label labelWeight;
         private System.Windows.Forms.Label labelFrom;
         private System.Windows.Forms.Label labelTo;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button buttonReload;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.TextBox textBoxDriverID;
@@ -310,5 +324,6 @@ namespace Truckers
         private System.Windows.Forms.TextBox textBoxTo;
         private System.Windows.Forms.Label labelLine;
         private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button buttonExit;
     }
 }

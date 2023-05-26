@@ -10,4 +10,4 @@
       • Просмотр информации о текущем грузе              
   • Регистрация
 
-Add check post in FormLogin and modified Autorization(). Autorization in http channel. Begin create method ReloadCargo.
+ID in FormLogist. Create Reload and Exit buttons in FormLogist.
