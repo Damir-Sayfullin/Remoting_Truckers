@@ -17,12 +17,12 @@ namespace Truckers
     {
         RemoteObjectTCP remoteTCP; // удаленный объект
         FormLogin formLogin; // ссылка на форму авторизации
-
-        DataTable cargoDataTable;
-        public FormLogist(FormLogin formLogin)
+        DataTable cargoDataTable; // таблица с грузами
+        public FormLogist(FormLogin formLogin, string username)
         {
             InitializeComponent();
             this.formLogin = formLogin; // присваивание ссылки на форму авторизации
+            label1.Text = "Логист: " + username;
             ConnectToServer();
             CargoReload();
         }
@@ -74,6 +74,16 @@ namespace Truckers
                 textBoxTo.Text = row["To"].ToString();
             }
 
+        }
+
+        private void buttonExit_Click(object sender, EventArgs e)
+        {
+            // открытие формы авторизации
+            formLogin.Show();
+            // закрытие этой формы регистрации
+            this.Close();
+            // освобождение памяти
+            this.Dispose();
         }
     }
 }

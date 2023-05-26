@@ -32,7 +32,7 @@ namespace Truckers
             lease.Register(clientHTTPSponsor);
         }
 
-        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) // нажатие на кнопку "Авторизоваться"
         {
             // открытие формы авторизации
             formLogin.Show();
@@ -42,7 +42,7 @@ namespace Truckers
             this.Dispose();
         }
 
-        private void button1_Click(object sender, EventArgs e) // нажатие на кнопку "ОТправить"
+        private void button1_Click(object sender, EventArgs e) // нажатие на кнопку "Отправить"
         {
             // проверка на пустые поля
             if (textBox1.Text == "" || textBox2.Text == "" || textBox3.Text == "" || comboBox1.Text == "")

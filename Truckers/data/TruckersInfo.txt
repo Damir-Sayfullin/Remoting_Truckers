@@ -10,4 +10,4 @@
       • Просмотр информации о текущем грузе              
   • Регистрация
 
-ID in FormLogist. Create Reload and Exit buttons in FormLogist.
+Modify FormLogist form. Add name in form.

@@ -73,8 +73,10 @@ namespace Truckers
                 // если такой пользователь логист
                 else if (result == "logist")
                 {
+                    // получение имени пользователя
+                    string username = remoteHTTP.GetUsername(textBox1.Text);
                     // переход к форме логиста
-                    FormLogist formLogist = new FormLogist(this);
+                    FormLogist formLogist = new FormLogist(this, username);
                     formLogist.Show();
                     this.Hide();
                 }

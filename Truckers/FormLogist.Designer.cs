@@ -40,8 +40,8 @@ namespace Truckers
             this.labelFrom = new System.Windows.Forms.Label();
             this.labelTo = new System.Windows.Forms.Label();
             this.buttonReload = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.buttonSave = new System.Windows.Forms.Button();
+            this.buttonAdd = new System.Windows.Forms.Button();
             this.textBoxDriverID = new System.Windows.Forms.TextBox();
             this.textBoxStatus = new System.Windows.Forms.TextBox();
             this.textBoxCargo = new System.Windows.Forms.TextBox();
@@ -49,8 +49,9 @@ namespace Truckers
             this.textBoxFrom = new System.Windows.Forms.TextBox();
             this.textBoxTo = new System.Windows.Forms.TextBox();
             this.labelLine = new System.Windows.Forms.Label();
-            this.button4 = new System.Windows.Forms.Button();
+            this.buttonDelete = new System.Windows.Forms.Button();
             this.buttonExit = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -69,7 +70,7 @@ namespace Truckers
             this.label_ID.AutoSize = true;
             this.label_ID.Font = new System.Drawing.Font("Montserrat", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label_ID.ForeColor = System.Drawing.Color.White;
-            this.label_ID.Location = new System.Drawing.Point(65, 192);
+            this.label_ID.Location = new System.Drawing.Point(267, 192);
             this.label_ID.Name = "label_ID";
             this.label_ID.Size = new System.Drawing.Size(42, 33);
             this.label_ID.TabIndex = 0;
@@ -77,10 +78,11 @@ namespace Truckers
             // 
             // comboBox_ID
             // 
+            this.comboBox_ID.Cursor = System.Windows.Forms.Cursors.Hand;
             this.comboBox_ID.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox_ID.Font = new System.Drawing.Font("Montserrat", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.comboBox_ID.FormattingEnabled = true;
-            this.comboBox_ID.Location = new System.Drawing.Point(120, 190);
+            this.comboBox_ID.Location = new System.Drawing.Point(322, 190);
             this.comboBox_ID.Name = "comboBox_ID";
             this.comboBox_ID.Size = new System.Drawing.Size(200, 40);
             this.comboBox_ID.TabIndex = 1;
@@ -91,7 +93,7 @@ namespace Truckers
             this.labelDriverID.AutoSize = true;
             this.labelDriverID.Font = new System.Drawing.Font("Montserrat", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.labelDriverID.ForeColor = System.Drawing.Color.White;
-            this.labelDriverID.Location = new System.Drawing.Point(40, 260);
+            this.labelDriverID.Location = new System.Drawing.Point(40, 241);
             this.labelDriverID.Name = "labelDriverID";
             this.labelDriverID.Size = new System.Drawing.Size(166, 33);
             this.labelDriverID.TabIndex = 0;
@@ -102,7 +104,7 @@ namespace Truckers
             this.labelStatus.AutoSize = true;
             this.labelStatus.Font = new System.Drawing.Font("Montserrat", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.labelStatus.ForeColor = System.Drawing.Color.White;
-            this.labelStatus.Location = new System.Drawing.Point(40, 350);
+            this.labelStatus.Location = new System.Drawing.Point(440, 241);
             this.labelStatus.Name = "labelStatus";
             this.labelStatus.Size = new System.Drawing.Size(95, 33);
             this.labelStatus.TabIndex = 0;
@@ -113,7 +115,7 @@ namespace Truckers
             this.labelCargo.AutoSize = true;
             this.labelCargo.Font = new System.Drawing.Font("Montserrat", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.labelCargo.ForeColor = System.Drawing.Color.White;
-            this.labelCargo.Location = new System.Drawing.Point(40, 440);
+            this.labelCargo.Location = new System.Drawing.Point(40, 331);
             this.labelCargo.Name = "labelCargo";
             this.labelCargo.Size = new System.Drawing.Size(281, 33);
             this.labelCargo.TabIndex = 0;
@@ -124,7 +126,7 @@ namespace Truckers
             this.labelWeight.AutoSize = true;
             this.labelWeight.Font = new System.Drawing.Font("Montserrat", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.labelWeight.ForeColor = System.Drawing.Color.White;
-            this.labelWeight.Location = new System.Drawing.Point(40, 530);
+            this.labelWeight.Location = new System.Drawing.Point(440, 331);
             this.labelWeight.Name = "labelWeight";
             this.labelWeight.Size = new System.Drawing.Size(278, 33);
             this.labelWeight.TabIndex = 0;
@@ -135,7 +137,7 @@ namespace Truckers
             this.labelFrom.AutoSize = true;
             this.labelFrom.Font = new System.Drawing.Font("Montserrat", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.labelFrom.ForeColor = System.Drawing.Color.White;
-            this.labelFrom.Location = new System.Drawing.Point(40, 620);
+            this.labelFrom.Location = new System.Drawing.Point(40, 421);
             this.labelFrom.Name = "labelFrom";
             this.labelFrom.Size = new System.Drawing.Size(260, 33);
             this.labelFrom.TabIndex = 0;
@@ -146,7 +148,7 @@ namespace Truckers
             this.labelTo.AutoSize = true;
             this.labelTo.Font = new System.Drawing.Font("Montserrat", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.labelTo.ForeColor = System.Drawing.Color.White;
-            this.labelTo.Location = new System.Drawing.Point(40, 710);
+            this.labelTo.Location = new System.Drawing.Point(440, 421);
             this.labelTo.Name = "labelTo";
             this.labelTo.Size = new System.Drawing.Size(245, 33);
             this.labelTo.TabIndex = 0;
@@ -154,39 +156,42 @@ namespace Truckers
             // 
             // buttonReload
             // 
+            this.buttonReload.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonReload.Font = new System.Drawing.Font("Century Gothic", 13.8F);
-            this.buttonReload.Location = new System.Drawing.Point(32, 807);
+            this.buttonReload.Location = new System.Drawing.Point(32, 533);
             this.buttonReload.Name = "buttonReload";
-            this.buttonReload.Size = new System.Drawing.Size(155, 50);
+            this.buttonReload.Size = new System.Drawing.Size(170, 50);
             this.buttonReload.TabIndex = 8;
             this.buttonReload.Text = "Обновить";
             this.buttonReload.UseVisualStyleBackColor = true;
             this.buttonReload.Click += new System.EventHandler(this.buttonReload_Click);
             // 
-            // button2
+            // buttonSave
             // 
-            this.button2.Font = new System.Drawing.Font("Century Gothic", 13.8F);
-            this.button2.Location = new System.Drawing.Point(192, 807);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(155, 50);
-            this.button2.TabIndex = 9;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
+            this.buttonSave.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonSave.Font = new System.Drawing.Font("Century Gothic", 13.8F);
+            this.buttonSave.Location = new System.Drawing.Point(214, 533);
+            this.buttonSave.Name = "buttonSave";
+            this.buttonSave.Size = new System.Drawing.Size(170, 50);
+            this.buttonSave.TabIndex = 9;
+            this.buttonSave.Text = "Сохранить";
+            this.buttonSave.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // buttonAdd
             // 
-            this.button3.Font = new System.Drawing.Font("Century Gothic", 13.8F);
-            this.button3.Location = new System.Drawing.Point(32, 863);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(155, 50);
-            this.button3.TabIndex = 10;
-            this.button3.Text = "button3";
-            this.button3.UseVisualStyleBackColor = true;
+            this.buttonAdd.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonAdd.Font = new System.Drawing.Font("Century Gothic", 13.8F);
+            this.buttonAdd.Location = new System.Drawing.Point(396, 533);
+            this.buttonAdd.Name = "buttonAdd";
+            this.buttonAdd.Size = new System.Drawing.Size(170, 50);
+            this.buttonAdd.TabIndex = 10;
+            this.buttonAdd.Text = "Добавить";
+            this.buttonAdd.UseVisualStyleBackColor = true;
             // 
             // textBoxDriverID
             // 
             this.textBoxDriverID.Font = new System.Drawing.Font("Montserrat", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxDriverID.Location = new System.Drawing.Point(32, 300);
+            this.textBoxDriverID.Location = new System.Drawing.Point(32, 281);
             this.textBoxDriverID.Name = "textBoxDriverID";
             this.textBoxDriverID.Size = new System.Drawing.Size(315, 36);
             this.textBoxDriverID.TabIndex = 2;
@@ -194,7 +199,7 @@ namespace Truckers
             // textBoxStatus
             // 
             this.textBoxStatus.Font = new System.Drawing.Font("Montserrat", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxStatus.Location = new System.Drawing.Point(32, 390);
+            this.textBoxStatus.Location = new System.Drawing.Point(432, 281);
             this.textBoxStatus.Name = "textBoxStatus";
             this.textBoxStatus.Size = new System.Drawing.Size(315, 36);
             this.textBoxStatus.TabIndex = 3;
@@ -202,7 +207,7 @@ namespace Truckers
             // textBoxCargo
             // 
             this.textBoxCargo.Font = new System.Drawing.Font("Montserrat", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxCargo.Location = new System.Drawing.Point(32, 480);
+            this.textBoxCargo.Location = new System.Drawing.Point(32, 371);
             this.textBoxCargo.Name = "textBoxCargo";
             this.textBoxCargo.Size = new System.Drawing.Size(315, 36);
             this.textBoxCargo.TabIndex = 4;
@@ -210,7 +215,7 @@ namespace Truckers
             // textBoxWeight
             // 
             this.textBoxWeight.Font = new System.Drawing.Font("Montserrat", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxWeight.Location = new System.Drawing.Point(32, 570);
+            this.textBoxWeight.Location = new System.Drawing.Point(432, 371);
             this.textBoxWeight.Name = "textBoxWeight";
             this.textBoxWeight.Size = new System.Drawing.Size(315, 36);
             this.textBoxWeight.TabIndex = 5;
@@ -218,7 +223,7 @@ namespace Truckers
             // textBoxFrom
             // 
             this.textBoxFrom.Font = new System.Drawing.Font("Montserrat", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxFrom.Location = new System.Drawing.Point(32, 660);
+            this.textBoxFrom.Location = new System.Drawing.Point(32, 461);
             this.textBoxFrom.Name = "textBoxFrom";
             this.textBoxFrom.Size = new System.Drawing.Size(315, 36);
             this.textBoxFrom.TabIndex = 6;
@@ -226,7 +231,7 @@ namespace Truckers
             // textBoxTo
             // 
             this.textBoxTo.Font = new System.Drawing.Font("Montserrat", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxTo.Location = new System.Drawing.Point(32, 750);
+            this.textBoxTo.Location = new System.Drawing.Point(432, 461);
             this.textBoxTo.Name = "textBoxTo";
             this.textBoxTo.Size = new System.Drawing.Size(315, 36);
             this.textBoxTo.TabIndex = 7;
@@ -234,43 +239,59 @@ namespace Truckers
             // labelLine
             // 
             this.labelLine.AutoSize = true;
-            this.labelLine.Font = new System.Drawing.Font("Montserrat", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelLine.Font = new System.Drawing.Font("Century Gothic", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.labelLine.ForeColor = System.Drawing.Color.White;
-            this.labelLine.Location = new System.Drawing.Point(-10, 120);
+            this.labelLine.Location = new System.Drawing.Point(-5, 120);
             this.labelLine.Name = "labelLine";
-            this.labelLine.Size = new System.Drawing.Size(413, 46);
+            this.labelLine.Size = new System.Drawing.Size(799, 40);
             this.labelLine.TabIndex = 0;
-            this.labelLine.Text = "________Логист________";
+            this.labelLine.Text = "______________________________________________";
             this.labelLine.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // button4
+            // buttonDelete
             // 
-            this.button4.Font = new System.Drawing.Font("Century Gothic", 13.8F);
-            this.button4.Location = new System.Drawing.Point(192, 863);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(155, 50);
-            this.button4.TabIndex = 11;
-            this.button4.Text = "button4";
-            this.button4.UseVisualStyleBackColor = true;
+            this.buttonDelete.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonDelete.Font = new System.Drawing.Font("Century Gothic", 13.8F);
+            this.buttonDelete.Location = new System.Drawing.Point(577, 533);
+            this.buttonDelete.Name = "buttonDelete";
+            this.buttonDelete.Size = new System.Drawing.Size(170, 50);
+            this.buttonDelete.TabIndex = 11;
+            this.buttonDelete.Text = "Удалить";
+            this.buttonDelete.UseVisualStyleBackColor = true;
             // 
             // buttonExit
             // 
+            this.buttonExit.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonExit.Font = new System.Drawing.Font("Century Gothic", 13.8F);
-            this.buttonExit.Location = new System.Drawing.Point(32, 942);
+            this.buttonExit.Location = new System.Drawing.Point(432, 83);
             this.buttonExit.Name = "buttonExit";
             this.buttonExit.Size = new System.Drawing.Size(315, 50);
-            this.buttonExit.TabIndex = 12;
+            this.buttonExit.TabIndex = 0;
             this.buttonExit.Text = "Выйти из системы";
             this.buttonExit.UseVisualStyleBackColor = true;
+            this.buttonExit.Click += new System.EventHandler(this.buttonExit_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Montserrat", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(424, 19);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(324, 46);
+            this.label1.TabIndex = 13;
+            this.label1.Text = "Логист: username";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // FormLogist
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(45)))), ((int)(((byte)(90)))));
-            this.ClientSize = new System.Drawing.Size(382, 1015);
+            this.ClientSize = new System.Drawing.Size(782, 603);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.buttonExit);
-            this.Controls.Add(this.button4);
+            this.Controls.Add(this.buttonDelete);
             this.Controls.Add(this.labelLine);
             this.Controls.Add(this.textBoxTo);
             this.Controls.Add(this.textBoxFrom);
@@ -278,8 +299,8 @@ namespace Truckers
             this.Controls.Add(this.textBoxCargo);
             this.Controls.Add(this.textBoxStatus);
             this.Controls.Add(this.textBoxDriverID);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.buttonAdd);
+            this.Controls.Add(this.buttonSave);
             this.Controls.Add(this.buttonReload);
             this.Controls.Add(this.labelTo);
             this.Controls.Add(this.labelFrom);
@@ -314,8 +335,8 @@ namespace Truckers
         private System.Windows.Forms.Label labelFrom;
         private System.Windows.Forms.Label labelTo;
         private System.Windows.Forms.Button buttonReload;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button buttonSave;
+        private System.Windows.Forms.Button buttonAdd;
         private System.Windows.Forms.TextBox textBoxDriverID;
         private System.Windows.Forms.TextBox textBoxStatus;
         private System.Windows.Forms.TextBox textBoxCargo;
@@ -323,7 +344,8 @@ namespace Truckers
         private System.Windows.Forms.TextBox textBoxFrom;
         private System.Windows.Forms.TextBox textBoxTo;
         private System.Windows.Forms.Label labelLine;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button buttonDelete;
         private System.Windows.Forms.Button buttonExit;
+        private System.Windows.Forms.Label label1;
     }
 }

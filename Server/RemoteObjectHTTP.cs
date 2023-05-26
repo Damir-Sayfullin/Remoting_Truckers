@@ -21,6 +21,7 @@ namespace Server
             Console.WriteLine("Удаленный объект HTTP уничтожен!");
         }
 
+
         /// <summary>
         /// Поиск пользователей по логину и паролю
         /// </summary>
@@ -55,6 +56,31 @@ namespace Server
                     else
                         return "1";
                 }
+            }
+        }
+
+        /// <summary>
+        /// Вывод имени пользователя по логину
+        /// </summary>
+        /// <returns>
+        /// Имя пользователя
+        /// </returns>
+        public string GetUsername(string login)
+        {
+            using (OleDbConnection connection = new OleDbConnection(connectionString))
+            {
+                // открытие соединения
+                connection.Open();
+
+                DataTable dataTable = new DataTable(); // создание таблицы
+                OleDbDataAdapter adapter = new OleDbDataAdapter(string.Format("SELECT * FROM Users WHERE Login='{0}'", login), connection);
+                adapter.Fill(dataTable); // запись результатов выполнения запроса в таблицу
+
+                // закрытие соединения
+                connection.Close();
+
+                // вывод имени пользователя
+                return dataTable.Rows[0][1].ToString();
             }
         }
 
