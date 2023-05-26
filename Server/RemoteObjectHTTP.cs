@@ -7,7 +7,7 @@ using System.Runtime.Remoting.Lifetime;
 namespace Server
 {
     [Serializable]
-    public class RemoteObjectHTTP : MarshalByRefObject, IRemoteObject
+    public class RemoteObjectHTTP : MarshalByRefObject
     {
         // ссылка на базу данных
         private string connectionString = "Provider=Microsoft.Jet.OleDb.4.0;Data Source=C:/My Files/Универ/3 курс/Технологии программирования/TP_Truckers/Truckers/data/TruckersDB.mdb";

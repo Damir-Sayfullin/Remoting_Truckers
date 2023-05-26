@@ -70,7 +70,7 @@ namespace Truckers
                             MessageBoxOptions.DefaultDesktopOnly);
                     this.TopMost = false;
                 }
-                // если такой пользователь найдени он логист
+                // если такой пользователь логист
                 else if (result == "logist")
                 {
                     // переход к форме логиста
@@ -78,7 +78,7 @@ namespace Truckers
                     formLogist.Show();
                     this.Hide();
                 }
-                // если такой пользователь найдени он водитель
+                // если такой пользователь водитель
                 else if (result == "driver")
                 {
                     // заглушка
