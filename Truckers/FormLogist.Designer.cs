@@ -43,7 +43,6 @@ namespace Truckers
             this.buttonSave = new System.Windows.Forms.Button();
             this.buttonAdd = new System.Windows.Forms.Button();
             this.textBoxDriverID = new System.Windows.Forms.TextBox();
-            this.textBoxStatus = new System.Windows.Forms.TextBox();
             this.textBoxCargo = new System.Windows.Forms.TextBox();
             this.textBoxWeight = new System.Windows.Forms.TextBox();
             this.textBoxFrom = new System.Windows.Forms.TextBox();
@@ -52,6 +51,7 @@ namespace Truckers
             this.buttonDelete = new System.Windows.Forms.Button();
             this.buttonExit = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.comboBoxStatus = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -104,7 +104,7 @@ namespace Truckers
             this.labelStatus.AutoSize = true;
             this.labelStatus.Font = new System.Drawing.Font("Montserrat", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.labelStatus.ForeColor = System.Drawing.Color.White;
-            this.labelStatus.Location = new System.Drawing.Point(440, 241);
+            this.labelStatus.Location = new System.Drawing.Point(404, 241);
             this.labelStatus.Name = "labelStatus";
             this.labelStatus.Size = new System.Drawing.Size(95, 33);
             this.labelStatus.TabIndex = 0;
@@ -126,7 +126,7 @@ namespace Truckers
             this.labelWeight.AutoSize = true;
             this.labelWeight.Font = new System.Drawing.Font("Montserrat", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.labelWeight.ForeColor = System.Drawing.Color.White;
-            this.labelWeight.Location = new System.Drawing.Point(440, 331);
+            this.labelWeight.Location = new System.Drawing.Point(404, 331);
             this.labelWeight.Name = "labelWeight";
             this.labelWeight.Size = new System.Drawing.Size(278, 33);
             this.labelWeight.TabIndex = 0;
@@ -148,7 +148,7 @@ namespace Truckers
             this.labelTo.AutoSize = true;
             this.labelTo.Font = new System.Drawing.Font("Montserrat", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.labelTo.ForeColor = System.Drawing.Color.White;
-            this.labelTo.Location = new System.Drawing.Point(440, 421);
+            this.labelTo.Location = new System.Drawing.Point(404, 421);
             this.labelTo.Name = "labelTo";
             this.labelTo.Size = new System.Drawing.Size(245, 33);
             this.labelTo.TabIndex = 0;
@@ -176,6 +176,7 @@ namespace Truckers
             this.buttonSave.TabIndex = 9;
             this.buttonSave.Text = "Сохранить";
             this.buttonSave.UseVisualStyleBackColor = true;
+            this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
             // 
             // buttonAdd
             // 
@@ -193,31 +194,23 @@ namespace Truckers
             this.textBoxDriverID.Font = new System.Drawing.Font("Montserrat", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.textBoxDriverID.Location = new System.Drawing.Point(32, 281);
             this.textBoxDriverID.Name = "textBoxDriverID";
-            this.textBoxDriverID.Size = new System.Drawing.Size(315, 36);
+            this.textBoxDriverID.Size = new System.Drawing.Size(352, 36);
             this.textBoxDriverID.TabIndex = 2;
-            // 
-            // textBoxStatus
-            // 
-            this.textBoxStatus.Font = new System.Drawing.Font("Montserrat", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxStatus.Location = new System.Drawing.Point(432, 281);
-            this.textBoxStatus.Name = "textBoxStatus";
-            this.textBoxStatus.Size = new System.Drawing.Size(315, 36);
-            this.textBoxStatus.TabIndex = 3;
             // 
             // textBoxCargo
             // 
             this.textBoxCargo.Font = new System.Drawing.Font("Montserrat", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.textBoxCargo.Location = new System.Drawing.Point(32, 371);
             this.textBoxCargo.Name = "textBoxCargo";
-            this.textBoxCargo.Size = new System.Drawing.Size(315, 36);
+            this.textBoxCargo.Size = new System.Drawing.Size(352, 36);
             this.textBoxCargo.TabIndex = 4;
             // 
             // textBoxWeight
             // 
             this.textBoxWeight.Font = new System.Drawing.Font("Montserrat", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxWeight.Location = new System.Drawing.Point(432, 371);
+            this.textBoxWeight.Location = new System.Drawing.Point(396, 371);
             this.textBoxWeight.Name = "textBoxWeight";
-            this.textBoxWeight.Size = new System.Drawing.Size(315, 36);
+            this.textBoxWeight.Size = new System.Drawing.Size(352, 36);
             this.textBoxWeight.TabIndex = 5;
             // 
             // textBoxFrom
@@ -225,15 +218,15 @@ namespace Truckers
             this.textBoxFrom.Font = new System.Drawing.Font("Montserrat", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.textBoxFrom.Location = new System.Drawing.Point(32, 461);
             this.textBoxFrom.Name = "textBoxFrom";
-            this.textBoxFrom.Size = new System.Drawing.Size(315, 36);
+            this.textBoxFrom.Size = new System.Drawing.Size(352, 36);
             this.textBoxFrom.TabIndex = 6;
             // 
             // textBoxTo
             // 
             this.textBoxTo.Font = new System.Drawing.Font("Montserrat", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxTo.Location = new System.Drawing.Point(432, 461);
+            this.textBoxTo.Location = new System.Drawing.Point(396, 461);
             this.textBoxTo.Name = "textBoxTo";
-            this.textBoxTo.Size = new System.Drawing.Size(315, 36);
+            this.textBoxTo.Size = new System.Drawing.Size(352, 36);
             this.textBoxTo.TabIndex = 7;
             // 
             // labelLine
@@ -283,12 +276,28 @@ namespace Truckers
             this.label1.Text = "Логист: username";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // comboBoxStatus
+            // 
+            this.comboBoxStatus.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.comboBoxStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxStatus.Font = new System.Drawing.Font("Montserrat", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.comboBoxStatus.FormattingEnabled = true;
+            this.comboBoxStatus.Items.AddRange(new object[] {
+            "ready for unloading",
+            "on the way",
+            "delivered"});
+            this.comboBoxStatus.Location = new System.Drawing.Point(396, 281);
+            this.comboBoxStatus.Name = "comboBoxStatus";
+            this.comboBoxStatus.Size = new System.Drawing.Size(352, 35);
+            this.comboBoxStatus.TabIndex = 3;
+            // 
             // FormLogist
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(45)))), ((int)(((byte)(90)))));
             this.ClientSize = new System.Drawing.Size(782, 603);
+            this.Controls.Add(this.comboBoxStatus);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.buttonExit);
             this.Controls.Add(this.buttonDelete);
@@ -297,7 +306,6 @@ namespace Truckers
             this.Controls.Add(this.textBoxFrom);
             this.Controls.Add(this.textBoxWeight);
             this.Controls.Add(this.textBoxCargo);
-            this.Controls.Add(this.textBoxStatus);
             this.Controls.Add(this.textBoxDriverID);
             this.Controls.Add(this.buttonAdd);
             this.Controls.Add(this.buttonSave);
@@ -338,7 +346,6 @@ namespace Truckers
         private System.Windows.Forms.Button buttonSave;
         private System.Windows.Forms.Button buttonAdd;
         private System.Windows.Forms.TextBox textBoxDriverID;
-        private System.Windows.Forms.TextBox textBoxStatus;
         private System.Windows.Forms.TextBox textBoxCargo;
         private System.Windows.Forms.TextBox textBoxWeight;
         private System.Windows.Forms.TextBox textBoxFrom;
@@ -347,5 +354,6 @@ namespace Truckers
         private System.Windows.Forms.Button buttonDelete;
         private System.Windows.Forms.Button buttonExit;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox comboBoxStatus;
     }
 }

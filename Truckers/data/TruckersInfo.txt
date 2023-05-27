@@ -10,4 +10,4 @@
       • Просмотр информации о текущем грузе              
   • Регистрация
 
-Modify FormLogist form. Add name in form.
+Add Save button. Modify FormLogist form. Add comboBoxStatus instead textBoxStatus. Add font in Truckers/data. Add .gitignore.

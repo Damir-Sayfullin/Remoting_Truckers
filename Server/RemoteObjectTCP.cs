@@ -21,6 +21,12 @@ namespace Server
             Console.WriteLine("Удаленный объект TCP уничтожен!");
         }
 
+        /// <summary>
+        /// Получение базы данных
+        /// </summary>
+        /// <returns>
+        /// Таблица DataTable, полученная из базы данных
+        /// </returns>
         public DataTable Logist_CargoReload()
         {
             using (OleDbConnection connection = new OleDbConnection(connectionString))
@@ -37,6 +43,28 @@ namespace Server
 
                 // возвращение таблицы
                 return dataTable;
+            }
+        }
+
+        /// <summary>
+        /// Изменение значений в базе данных по ID
+        /// </summary>
+        /// <returns>
+        /// "0" - если изменение прошло успешно
+        /// </returns>
+        public string Logist_CargoSave(string ID, string DriverID, string Status, string Cargo, string Weight, string From, string To) // изменение данных в 
+        {
+            using (OleDbConnection connection = new OleDbConnection(connectionString))
+            {
+                // открытие соединения
+                connection.Open();
+
+                // обновление данных по ID
+                string sql = string.Format("UPDATE Cargo SET DriverID={1}, Status='{2}', Cargo='{3}', Weight={4}, [From]='{5}', [To]='{6}' WHERE ID={0}", ID, DriverID, Status, Cargo, Weight, From, To);
+                OleDbCommand cmd = new OleDbCommand(sql, connection);
+                cmd.ExecuteNonQuery();
+                connection.Close();
+                return "0";
             }
         }
 

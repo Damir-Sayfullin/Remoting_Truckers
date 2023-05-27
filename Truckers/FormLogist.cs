@@ -56,6 +56,7 @@ namespace Truckers
         
         private void buttonReload_Click(object sender, EventArgs e) // при нажатии на кнопку "Обновить"
         {
+            // обновление таблицы
             CargoReload();
         }
 
@@ -67,7 +68,7 @@ namespace Truckers
             {
                 // изменение полей в соответсвии с выбраным ID
                 textBoxDriverID.Text = row["DriverID"].ToString();
-                textBoxStatus.Text = row["Status"].ToString();
+                comboBoxStatus.Text = row["Status"].ToString();
                 textBoxCargo.Text = row["Cargo"].ToString();
                 textBoxWeight.Text = row["Weight"].ToString();
                 textBoxFrom.Text = row["From"].ToString();
@@ -76,7 +77,7 @@ namespace Truckers
 
         }
 
-        private void buttonExit_Click(object sender, EventArgs e)
+        private void buttonExit_Click(object sender, EventArgs e) // при нажатии на кнопку "Выйти из системы"
         {
             // открытие формы авторизации
             formLogin.Show();
@@ -84,6 +85,44 @@ namespace Truckers
             this.Close();
             // освобождение памяти
             this.Dispose();
+        }
+
+        private void buttonSave_Click(object sender, EventArgs e) // при нажатии на кнопку "Сохранить"
+        {
+            // проверка на пустые поля
+            if (comboBox_ID.Text == "" || textBoxDriverID.Text == "" || comboBoxStatus.Text == "" || textBoxCargo.Text == "" || textBoxWeight.Text == "" || textBoxFrom.Text == "" || textBoxTo.Text == "")
+            {
+                this.TopMost = true;
+                MessageBox.Show(
+                        "Не все поля заполнены!",
+                        "Ошибка",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning,
+                        MessageBoxDefaultButton.Button1,
+                        MessageBoxOptions.DefaultDesktopOnly);
+                this.TopMost = false;
+            }
+            // если все поля заполнены
+            else
+            {
+                // вызов метода Logist_CargoSave у удаленного объекта
+                string result = remoteTCP.Logist_CargoSave(comboBox_ID.Text, textBoxDriverID.Text, comboBoxStatus.Text, textBoxCargo.Text, textBoxWeight.Text, textBoxFrom.Text, textBoxTo.Text);
+                // если изменение прошло успешно
+                if (result == "0")
+                {
+                    this.TopMost = true;
+                    MessageBox.Show(
+                            "Данные успешно сохранены!",
+                            "Успех!",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Information,
+                            MessageBoxDefaultButton.Button1,
+                            MessageBoxOptions.DefaultDesktopOnly);
+                    this.TopMost = false;
+                }
+                // обновление таблицы
+                CargoReload();
+            }
         }
     }
 }
