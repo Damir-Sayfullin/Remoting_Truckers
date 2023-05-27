@@ -124,5 +124,43 @@ namespace Truckers
                 CargoReload();
             }
         }
+
+        private void buttonAdd_Click(object sender, EventArgs e) // при нажатии на кнопку "Добавить"
+        {
+            // проверка на пустые поля
+            if (textBoxDriverID.Text == "" || comboBoxStatus.Text == "" || textBoxCargo.Text == "" || textBoxWeight.Text == "" || textBoxFrom.Text == "" || textBoxTo.Text == "")
+            {
+                this.TopMost = true;
+                MessageBox.Show(
+                        "Не все поля заполнены!",
+                        "Ошибка",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning,
+                        MessageBoxDefaultButton.Button1,
+                        MessageBoxOptions.DefaultDesktopOnly);
+                this.TopMost = false;
+            }
+            // если все поля заполнены
+            else
+            {
+                // вызов метода Logist_CargoAdd у удаленного объекта
+                string result = remoteTCP.Logist_CargoAdd(textBoxDriverID.Text, comboBoxStatus.Text, textBoxCargo.Text, textBoxWeight.Text, textBoxFrom.Text, textBoxTo.Text);
+                // если изменение прошло успешно
+                if (result == "0")
+                {
+                    this.TopMost = true;
+                    MessageBox.Show(
+                            "Данные успешно добавлены!",
+                            "Успех!",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Information,
+                            MessageBoxDefaultButton.Button1,
+                            MessageBoxOptions.DefaultDesktopOnly);
+                    this.TopMost = false;
+                }
+                // обновление таблицы
+                CargoReload();
+            }
+        }
     }
 }

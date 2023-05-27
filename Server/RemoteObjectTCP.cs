@@ -52,7 +52,7 @@ namespace Server
         /// <returns>
         /// "0" - если изменение прошло успешно
         /// </returns>
-        public string Logist_CargoSave(string ID, string DriverID, string Status, string Cargo, string Weight, string From, string To) // изменение данных в 
+        public string Logist_CargoSave(string ID, string DriverID, string Status, string Cargo, string Weight, string From, string To)
         {
             using (OleDbConnection connection = new OleDbConnection(connectionString))
             {
@@ -61,6 +61,28 @@ namespace Server
 
                 // обновление данных по ID
                 string sql = string.Format("UPDATE Cargo SET DriverID={1}, Status='{2}', Cargo='{3}', Weight={4}, [From]='{5}', [To]='{6}' WHERE ID={0}", ID, DriverID, Status, Cargo, Weight, From, To);
+                OleDbCommand cmd = new OleDbCommand(sql, connection);
+                cmd.ExecuteNonQuery();
+                connection.Close();
+                return "0";
+            }
+        }
+
+        /// <summary>
+        /// Добавление записей в базу данных
+        /// </summary>
+        /// <returns>
+        /// "0" - если добавление прошло успешно
+        /// </returns>
+        public string Logist_CargoAdd(string DriverID, string Status, string Cargo, string Weight, string From, string To)
+        {
+            using (OleDbConnection connection = new OleDbConnection(connectionString))
+            {
+                // открытие соединения
+                connection.Open();
+
+                // обновление данных по ID
+                string sql = string.Format("INSERT INTO Cargo (DriverID, Status, Cargo, Weight, [From], [To]) VALUES ({0}, '{1}', '{2}', {3}, '{4}', '{5}')", DriverID, Status, Cargo, Weight, From, To);
                 OleDbCommand cmd = new OleDbCommand(sql, connection);
                 cmd.ExecuteNonQuery();
                 connection.Close();
