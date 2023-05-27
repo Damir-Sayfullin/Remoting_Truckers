@@ -63,6 +63,8 @@ namespace Server
                 string sql = string.Format("UPDATE Cargo SET DriverID={1}, Status='{2}', Cargo='{3}', Weight={4}, [From]='{5}', [To]='{6}' WHERE ID={0}", ID, DriverID, Status, Cargo, Weight, From, To);
                 OleDbCommand cmd = new OleDbCommand(sql, connection);
                 cmd.ExecuteNonQuery();
+
+                // закрытие соединения
                 connection.Close();
                 return "0";
             }
@@ -81,12 +83,65 @@ namespace Server
                 // открытие соединения
                 connection.Open();
 
-                // обновление данных по ID
+                // добавление данных
                 string sql = string.Format("INSERT INTO Cargo (DriverID, Status, Cargo, Weight, [From], [To]) VALUES ({0}, '{1}', '{2}', {3}, '{4}', '{5}')", DriverID, Status, Cargo, Weight, From, To);
                 OleDbCommand cmd = new OleDbCommand(sql, connection);
                 cmd.ExecuteNonQuery();
+
+                // закрытие соединения
                 connection.Close();
                 return "0";
+            }
+        }
+
+        /// <summary>
+        /// Удаление записи из базы данных
+        /// </summary>
+        /// <returns>
+        /// "0" - если удаление прошло успешно
+        /// </returns>
+        public string Logist_CargoDelete(string ID)
+        {
+            using (OleDbConnection connection = new OleDbConnection(connectionString))
+            {
+                // открытие соединения
+                connection.Open();
+
+                // удаление данных по ID
+                string sql = string.Format("DELETE FROM Cargo WHERE ID = {0}", ID);
+                OleDbCommand cmd = new OleDbCommand(sql, connection);
+                cmd.ExecuteNonQuery();
+
+                // закрытие соединения
+                connection.Close();
+                return "0";
+            }
+        }
+
+        /// <summary>
+        /// Поиск количества грузов по ID водителя
+        /// </summary>
+        /// <returns>
+        /// Количество грузов
+        /// </returns>
+        public string Logist_GetDriversCount(string DriverID)
+        {
+            if (DriverID == "0")
+                return "0";
+            using (OleDbConnection connection = new OleDbConnection(connectionString))
+            {
+                // открытие соединения
+                connection.Open();
+
+                // обновление данных по ID
+                string sql = string.Format("SELECT * FROM Cargo WHERE DriverID = {0}", DriverID);
+                DataTable dataTable = new DataTable(); // создание таблицы
+                OleDbDataAdapter adapter = new OleDbDataAdapter(sql, connection);
+                adapter.Fill(dataTable); // запись результатов выполнения запроса в таблицу
+
+                // закрытие соединения
+                connection.Close();
+                return dataTable.Rows.Count.ToString();
             }
         }
 

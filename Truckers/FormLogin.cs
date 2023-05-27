@@ -45,7 +45,7 @@ namespace Truckers
                 this.TopMost = true;
                 MessageBox.Show(
                         "Введите логин и пароль!",
-                        "Ошибка",
+                        "Ошибка!",
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Error,
                         MessageBoxDefaultButton.Button1,
@@ -63,7 +63,7 @@ namespace Truckers
                     this.TopMost = true;
                     MessageBox.Show(
                             "Неверный логин или пароль!",
-                            "Ошибка",
+                            "Ошибка!",
                             MessageBoxButtons.OK,
                             MessageBoxIcon.Error,
                             MessageBoxDefaultButton.Button1,

@@ -252,6 +252,7 @@ namespace Truckers
             this.buttonDelete.TabIndex = 11;
             this.buttonDelete.Text = "Удалить";
             this.buttonDelete.UseVisualStyleBackColor = true;
+            this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);
             // 
             // buttonExit
             // 

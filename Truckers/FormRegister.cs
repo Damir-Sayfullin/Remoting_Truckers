@@ -50,7 +50,7 @@ namespace Truckers
                 this.TopMost = true;
                 MessageBox.Show(
                         "Не все поля заполнены!",
-                        "Ошибка",
+                        "Ошибка!",
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Warning,
                         MessageBoxDefaultButton.Button1,
@@ -81,7 +81,7 @@ namespace Truckers
                     this.TopMost = true;
                     MessageBox.Show(
                             "Пользователь с таким логином уже существует!",
-                            "Ошибка",
+                            "Ошибка!",
                             MessageBoxButtons.OK,
                             MessageBoxIcon.Warning,
                             MessageBoxDefaultButton.Button1,

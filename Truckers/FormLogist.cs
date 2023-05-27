@@ -25,6 +25,7 @@ namespace Truckers
             label1.Text = "Логист: " + username;
             ConnectToServer();
             CargoReload();
+            this.TopMost = true;
         }
 
         private void ConnectToServer() // установка соединения с сервером
@@ -92,36 +93,46 @@ namespace Truckers
             // проверка на пустые поля
             if (comboBox_ID.Text == "" || textBoxDriverID.Text == "" || comboBoxStatus.Text == "" || textBoxCargo.Text == "" || textBoxWeight.Text == "" || textBoxFrom.Text == "" || textBoxTo.Text == "")
             {
-                this.TopMost = true;
                 MessageBox.Show(
                         "Не все поля заполнены!",
-                        "Ошибка",
+                        "Ошибка!",
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Warning,
                         MessageBoxDefaultButton.Button1,
                         MessageBoxOptions.DefaultDesktopOnly);
-                this.TopMost = false;
             }
             // если все поля заполнены
             else
             {
-                // вызов метода Logist_CargoSave у удаленного объекта
-                string result = remoteTCP.Logist_CargoSave(comboBox_ID.Text, textBoxDriverID.Text, comboBoxStatus.Text, textBoxCargo.Text, textBoxWeight.Text, textBoxFrom.Text, textBoxTo.Text);
-                // если изменение прошло успешно
-                if (result == "0")
+                string driversCount = remoteTCP.Logist_GetDriversCount(textBoxDriverID.Text);
+                if (driversCount == "0")
                 {
-                    this.TopMost = true;
-                    MessageBox.Show(
-                            "Данные успешно сохранены!",
-                            "Успех!",
-                            MessageBoxButtons.OK,
-                            MessageBoxIcon.Information,
-                            MessageBoxDefaultButton.Button1,
-                            MessageBoxOptions.DefaultDesktopOnly);
-                    this.TopMost = false;
+                    // вызов метода Logist_CargoSave у удаленного объекта
+                    string result = remoteTCP.Logist_CargoSave(comboBox_ID.Text, textBoxDriverID.Text, comboBoxStatus.Text, textBoxCargo.Text, textBoxWeight.Text, textBoxFrom.Text, textBoxTo.Text);
+                    // если изменение прошло успешно
+                    if (result == "0")
+                    {
+                        MessageBox.Show(
+                                "Данные успешно сохранены!",
+                                "Успех!",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Information,
+                                MessageBoxDefaultButton.Button1,
+                                MessageBoxOptions.DefaultDesktopOnly);
+                    }
+                    // обновление таблицы
+                    CargoReload();
                 }
-                // обновление таблицы
-                CargoReload();
+                else
+                {
+                    MessageBox.Show(
+                                string.Format("У водителя с ID = {0} уже есть груз!", textBoxDriverID.Text),
+                                "Ошибка!",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Information,
+                                MessageBoxDefaultButton.Button1,
+                                MessageBoxOptions.DefaultDesktopOnly);
+                }
             }
         }
 
@@ -130,36 +141,90 @@ namespace Truckers
             // проверка на пустые поля
             if (textBoxDriverID.Text == "" || comboBoxStatus.Text == "" || textBoxCargo.Text == "" || textBoxWeight.Text == "" || textBoxFrom.Text == "" || textBoxTo.Text == "")
             {
-                this.TopMost = true;
                 MessageBox.Show(
                         "Не все поля заполнены!",
-                        "Ошибка",
+                        "Ошибка!",
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Warning,
                         MessageBoxDefaultButton.Button1,
                         MessageBoxOptions.DefaultDesktopOnly);
-                this.TopMost = false;
             }
             // если все поля заполнены
             else
             {
-                // вызов метода Logist_CargoAdd у удаленного объекта
-                string result = remoteTCP.Logist_CargoAdd(textBoxDriverID.Text, comboBoxStatus.Text, textBoxCargo.Text, textBoxWeight.Text, textBoxFrom.Text, textBoxTo.Text);
-                // если изменение прошло успешно
-                if (result == "0")
+                string driversCount = remoteTCP.Logist_GetDriversCount(textBoxDriverID.Text);
+                if (driversCount == "0")
                 {
-                    this.TopMost = true;
-                    MessageBox.Show(
-                            "Данные успешно добавлены!",
-                            "Успех!",
-                            MessageBoxButtons.OK,
-                            MessageBoxIcon.Information,
-                            MessageBoxDefaultButton.Button1,
-                            MessageBoxOptions.DefaultDesktopOnly);
-                    this.TopMost = false;
+                    // вызов метода Logist_CargoAdd у удаленного объекта
+                    string result = remoteTCP.Logist_CargoAdd(textBoxDriverID.Text, comboBoxStatus.Text, textBoxCargo.Text, textBoxWeight.Text, textBoxFrom.Text, textBoxTo.Text);
+                    // если изменение прошло успешно
+                    if (result == "0")
+                    {
+                        MessageBox.Show(
+                                "Данные успешно добавлены!",
+                                "Успех!",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Information,
+                                MessageBoxDefaultButton.Button1,
+                                MessageBoxOptions.DefaultDesktopOnly);
+                    }
+                    // обновление таблицы
+                    CargoReload();
                 }
-                // обновление таблицы
-                CargoReload();
+                else
+                {
+                    MessageBox.Show(
+                                string.Format("У водителя с ID = {0} уже есть груз!", textBoxDriverID.Text),
+                                "Ошибка!",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Information,
+                                MessageBoxDefaultButton.Button1,
+                                MessageBoxOptions.DefaultDesktopOnly);
+                }
+            }
+        }
+
+        private void buttonDelete_Click(object sender, EventArgs e) // при нажатии на кнопку "Удалить"
+        {
+            // проверка на пустое ID
+            if (comboBox_ID.Text == "")
+            {
+                MessageBox.Show(
+                        "Выберите ID!",
+                        "Ошибка!",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning,
+                        MessageBoxDefaultButton.Button1,
+                        MessageBoxOptions.DefaultDesktopOnly);
+            }
+            // если ID выбран
+            else
+            {
+                // требование подтверждения удаления от пользоватееля
+                if (MessageBox.Show(
+                            string.Format("Вы действительно хотите удалить груз?\n ID = {0}\n Статус = {1}\n Груз: {2}\n Из: {3}\n В: {4}", comboBox_ID.Text, comboBoxStatus.Text, textBoxCargo.Text, textBoxFrom.Text, textBoxTo.Text),
+                            "Внимание!",
+                            MessageBoxButtons.YesNo,
+                            MessageBoxIcon.Warning,
+                            MessageBoxDefaultButton.Button1,
+                            MessageBoxOptions.DefaultDesktopOnly) == DialogResult.Yes)
+                {
+                    // вызов метода Logist_CargoDelete у удаленного объекта
+                    string result = remoteTCP.Logist_CargoDelete(comboBox_ID.Text);
+                    // если удаление прошло успешно
+                    if (result == "0")
+                    {
+                        MessageBox.Show(
+                                string.Format("Груз с ID = {0} успешно удален!", comboBox_ID.Text),
+                                "Успех!",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Information,
+                                MessageBoxDefaultButton.Button1,
+                                MessageBoxOptions.DefaultDesktopOnly);
+                    }
+                    // обновление таблицы
+                    CargoReload();
+                }
             }
         }
     }

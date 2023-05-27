@@ -10,4 +10,4 @@
       • Просмотр информации о текущем грузе              
   • Регистрация
 
-Add ButtonAdd.
+Add ButtonDelete. Add check DriverID when Add and Save cargo.
