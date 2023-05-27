@@ -105,6 +105,7 @@ namespace Truckers
             else
             {
                 string driversCount = remoteTCP.Logist_GetDriversCount(textBoxDriverID.Text);
+                // проверка на наличие груза у водителя
                 if (driversCount == "0")
                 {
                     // вызов метода Logist_CargoSave у удаленного объекта
@@ -152,6 +153,7 @@ namespace Truckers
             // если все поля заполнены
             else
             {
+                // проверка на наличие груза у водителя
                 string driversCount = remoteTCP.Logist_GetDriversCount(textBoxDriverID.Text);
                 if (driversCount == "0")
                 {
@@ -200,7 +202,7 @@ namespace Truckers
             // если ID выбран
             else
             {
-                // требование подтверждения удаления от пользоватееля
+                // требование подтверждения удаления от пользователя
                 if (MessageBox.Show(
                             string.Format("Вы действительно хотите удалить груз?\n ID = {0}\n Статус = {1}\n Груз: {2}\n Из: {3}\n В: {4}", comboBox_ID.Text, comboBoxStatus.Text, textBoxCargo.Text, textBoxFrom.Text, textBoxTo.Text),
                             "Внимание!",

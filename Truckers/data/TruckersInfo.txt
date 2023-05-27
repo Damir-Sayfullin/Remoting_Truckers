@@ -10,4 +10,4 @@
       • Просмотр информации о текущем грузе              
   • Регистрация
 
-Add FormDriver. Add CurrentCargo button in FormDriver.
+Add Accept, Cancel, Delivery buttons on FormDriver.

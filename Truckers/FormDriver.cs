@@ -87,11 +87,12 @@ namespace Truckers
         {
             // получение данных о текущем грузе
             DataTable driverCargo = remoteTCP.Driver_GetCargo(ID.ToString());
+            // проверка на наличие груза у водителя
             if (driverCargo.Rows.Count != 0)
             {
                 foreach (DataRow row in driverCargo.Rows)
                 {
-                    // изменение полей в соответсвии с выбраным ID
+                    // изменение полей в соответсвии с ID водителя
                     comboBox_ID.Text = row["ID"].ToString();
                     textBoxDriverID.Text = row["DriverID"].ToString();
                     textBoxStatus.Text = row["Status"].ToString();
@@ -99,6 +100,169 @@ namespace Truckers
                     textBoxWeight.Text = row["Weight"].ToString();
                     textBoxFrom.Text = row["From"].ToString();
                     textBoxTo.Text = row["To"].ToString();
+                }
+            }
+            else
+            {
+                MessageBox.Show(
+                            string.Format("У вас нет активного груза!", textBoxDriverID.Text),
+                            "Ошибка!",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Information,
+                            MessageBoxDefaultButton.Button1,
+                            MessageBoxOptions.DefaultDesktopOnly);
+            }
+        }
+
+        private void buttonAccept_Click(object sender, EventArgs e)
+        {
+            // проверка на пустое ID
+            if (comboBox_ID.Text == "")
+            {
+                MessageBox.Show(
+                        "Выберите ID!",
+                        "Ошибка!",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning,
+                        MessageBoxDefaultButton.Button1,
+                        MessageBoxOptions.DefaultDesktopOnly);
+            }
+            else
+            {
+                // получение данных о текущем грузе
+                DataTable driverCargo = remoteTCP.Driver_GetCargo(ID.ToString());
+                // проверка на наличие груза у водителя
+                if (driverCargo.Rows.Count == 0)
+                {
+                    // проверка на наличие водителей у выбранного груза
+                    if (remoteTCP.Driver_GetDriverID(comboBox_ID.Text) == 0)
+                    {
+                        // принятие груза 
+                        int result = remoteTCP.Driver_CargoAccept(comboBox_ID.Text, ID.ToString());
+                        // если все прошло успешно
+                        if (result == 0)
+                        {
+                            MessageBox.Show(
+                                    string.Format("Груз принят!\n ID = {0}\n Груз: {1}\n Из: {2}\n В: {3}", comboBox_ID.Text, textBoxCargo.Text, textBoxFrom.Text, textBoxTo.Text),
+                                    "Успех!",
+                                    MessageBoxButtons.OK,
+                                    MessageBoxIcon.Information,
+                                    MessageBoxDefaultButton.Button1,
+                                    MessageBoxOptions.DefaultDesktopOnly);
+                        }
+                        else
+                        {
+                            MessageBox.Show(
+                                string.Format("Этот груз уже был доставлен!", textBoxDriverID.Text),
+                                "Ошибка!",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Information,
+                                MessageBoxDefaultButton.Button1,
+                                MessageBoxOptions.DefaultDesktopOnly);
+                        }
+                        // обновление таблицы
+                        CargoReload();
+                    }
+                    else
+                    {
+                        MessageBox.Show(
+                                string.Format("У этого груза уже есть водитель!", textBoxDriverID.Text),
+                                "Ошибка!",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Information,
+                                MessageBoxDefaultButton.Button1,
+                                MessageBoxOptions.DefaultDesktopOnly);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show(
+                                string.Format("У вас уже есть активный груз!", textBoxDriverID.Text),
+                                "Ошибка!",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Information,
+                                MessageBoxDefaultButton.Button1,
+                                MessageBoxOptions.DefaultDesktopOnly);
+                }
+            }
+        }
+
+        private void buttonCancel_Click(object sender, EventArgs e)
+        {
+            // получение данных о текущем грузе
+            DataTable driverCargo = remoteTCP.Driver_GetCargo(ID.ToString());
+            // проверка на наличие груза у водителя
+            if (driverCargo.Rows.Count != 0)
+            {
+                // требование подтверждения отказа от груза
+                if (MessageBox.Show(
+                            string.Format("Вы действительно хотите отказаться от груза?\n ID = {0}\n Груз: {1}\n Из: {2}\n В: {3}", driverCargo.Rows[0]["ID"].ToString(), driverCargo.Rows[0]["Cargo"], driverCargo.Rows[0]["From"], driverCargo.Rows[0]["To"]),
+                            "Внимание!",
+                            MessageBoxButtons.YesNo,
+                            MessageBoxIcon.Warning,
+                            MessageBoxDefaultButton.Button1,
+                            MessageBoxOptions.DefaultDesktopOnly) == DialogResult.Yes)
+                {
+                    // отказ от груза 
+                    int result = remoteTCP.Driver_CargoCancel(ID.ToString());
+                    // если все прошло успешно
+                    if (result == 0)
+                    {
+                        MessageBox.Show(
+                                string.Format("Ваш груз отменен!"),
+                                "Успех!",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Information,
+                                MessageBoxDefaultButton.Button1,
+                                MessageBoxOptions.DefaultDesktopOnly);
+                    }
+                    // обновление таблицы
+                    CargoReload();
+                }
+            }
+            else
+            {
+                MessageBox.Show(
+                            string.Format("У вас нет активного груза!", textBoxDriverID.Text),
+                            "Ошибка!",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Information,
+                            MessageBoxDefaultButton.Button1,
+                            MessageBoxOptions.DefaultDesktopOnly);
+            }
+        }
+
+        private void buttonDelivery_Click(object sender, EventArgs e)
+        {
+            // получение данных о текущем грузе
+            DataTable driverCargo = remoteTCP.Driver_GetCargo(ID.ToString());
+            // проверка на наличие груза у водителя
+            if (driverCargo.Rows.Count != 0)
+            {
+                // требование подтверждения доставки груза
+                if (MessageBox.Show(
+                            string.Format("Вы действительно хотите завершить доставку?\n ID = {0}\n Груз: {1}\n Из: {2}\n В: {3}", driverCargo.Rows[0]["ID"].ToString(), driverCargo.Rows[0]["Cargo"], driverCargo.Rows[0]["From"], driverCargo.Rows[0]["To"]),
+                            "Внимание!",
+                            MessageBoxButtons.YesNo,
+                            MessageBoxIcon.Warning,
+                            MessageBoxDefaultButton.Button1,
+                            MessageBoxOptions.DefaultDesktopOnly) == DialogResult.Yes)
+                {
+                    // завершение доставки груза 
+                    int result = remoteTCP.Driver_CargoDelivery(ID.ToString());
+                    // если все прошло успешно
+                    if (result == 0)
+                    {
+                        MessageBox.Show(
+                                string.Format("Ваш груз доставлен!"),
+                                "Успех!",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Information,
+                                MessageBoxDefaultButton.Button1,
+                                MessageBoxOptions.DefaultDesktopOnly);
+                    }
+                    // обновление таблицы
+                    CargoReload();
                 }
             }
             else

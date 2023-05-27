@@ -170,9 +170,116 @@ namespace Server
             }
         }
 
-        public byte[] Upload(string path)
+        /// <summary>
+        /// Получение ID водителя груза по ID груза
+        /// </summary>
+        /// <returns>
+        /// ID водителя - если у груза есть водитель
+        /// и 0 - если у водителя нет груза
+        /// </returns>
+        public int Driver_GetDriverID(string ID)
         {
-            return File.ReadAllBytes("Sources\\" + path);
+            using (OleDbConnection connection = new OleDbConnection(connectionString))
+            {
+                // открытие соединения
+                connection.Open();
+
+                // обновление данных по ID
+                string sql = string.Format("SELECT * FROM Cargo WHERE ID = {0}", ID);
+                DataTable dataTable = new DataTable(); // создание таблицы
+                OleDbDataAdapter adapter = new OleDbDataAdapter(sql, connection);
+                adapter.Fill(dataTable); // запись результатов выполнения запроса в таблицу
+
+                // закрытие соединения
+                connection.Close();
+                return Convert.ToInt32(dataTable.Rows[0]["DriverID"]);
+            }
+        }
+
+        /// <summary>
+        /// Взятие груза по ID груза и ID водителя
+        /// </summary>
+        /// <returns>
+        /// 0 - если все прошло успешно
+        /// и 1 - если груз уже был доставлен
+        /// </returns>
+        public int Driver_CargoAccept(string ID, string DriverID)
+        {
+            using (OleDbConnection connection = new OleDbConnection(connectionString))
+            {
+                // открытие соединения
+                connection.Open();
+
+                DataTable dataTable = new DataTable(); // создание таблицы
+                OleDbDataAdapter adapter = new OleDbDataAdapter("SELECT * FROM Cargo WHERE ID=" + ID, connection);
+                adapter.Fill(dataTable); // запись результатов выполнения запроса в таблицу
+
+                // проверка статуса груза
+                if (dataTable.Rows[0]["Status"].ToString() == "ready for unloading")
+                {
+                    // обновление данных по ID
+                    string sql = string.Format("UPDATE Cargo SET DriverID={1}, Status='on the way' WHERE ID={0}", ID, DriverID);
+                    OleDbCommand cmd = new OleDbCommand(sql, connection);
+                    cmd.ExecuteNonQuery();
+                    // закрытие соединения
+                    connection.Close();
+                    return 0;
+                }
+                else
+                {
+                    // закрытие соединения
+                    connection.Close();
+                    return 1;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Отказ от груза по ID груза и ID водителя
+        /// </summary>
+        /// <returns>
+        /// 0 - если все прошло успешно
+        /// </returns>
+        public int Driver_CargoCancel(string DriverID)
+        {
+            using (OleDbConnection connection = new OleDbConnection(connectionString))
+            {
+                // открытие соединения
+                connection.Open();
+
+                // обновление данных по ID
+                string sql = string.Format("UPDATE Cargo SET DriverID=0, Status='ready for unloading' WHERE DriverID={0}", DriverID);
+                OleDbCommand cmd = new OleDbCommand(sql, connection);
+                cmd.ExecuteNonQuery();
+
+                // закрытие соединения
+                connection.Close();
+                return 0;
+            }
+        }
+
+        /// <summary>
+        /// Доставка груза по ID груза и ID водителя
+        /// </summary>
+        /// <returns>
+        /// 0 - если все прошло успешно
+        /// </returns>
+        public int Driver_CargoDelivery(string DriverID)
+        {
+            using (OleDbConnection connection = new OleDbConnection(connectionString))
+            {
+                // открытие соединения
+                connection.Open();
+
+                // обновление данных по ID
+                string sql = string.Format("UPDATE Cargo SET DriverID=0, Status='delivered' WHERE DriverID={0}", DriverID);
+                OleDbCommand cmd = new OleDbCommand(sql, connection);
+                cmd.ExecuteNonQuery();
+
+                // закрытие соединения
+                connection.Close();
+                return 0;
+            }
         }
 
         public override object InitializeLifetimeService()

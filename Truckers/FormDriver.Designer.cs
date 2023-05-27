@@ -70,10 +70,10 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Montserrat", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(445, 11);
+            this.label1.Location = new System.Drawing.Point(440, 11);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(313, 39);
-            this.label1.TabIndex = 14;
+            this.label1.TabIndex = 0;
             this.label1.Text = "Водитель: username";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -84,7 +84,7 @@
             this.buttonExit.Location = new System.Drawing.Point(432, 83);
             this.buttonExit.Name = "buttonExit";
             this.buttonExit.Size = new System.Drawing.Size(315, 50);
-            this.buttonExit.TabIndex = 15;
+            this.buttonExit.TabIndex = 1;
             this.buttonExit.Text = "Выйти из системы";
             this.buttonExit.UseVisualStyleBackColor = true;
             this.buttonExit.Click += new System.EventHandler(this.buttonExit_Click);
@@ -108,9 +108,10 @@
             this.buttonDelivery.Location = new System.Drawing.Point(577, 533);
             this.buttonDelivery.Name = "buttonDelivery";
             this.buttonDelivery.Size = new System.Drawing.Size(170, 50);
-            this.buttonDelivery.TabIndex = 34;
+            this.buttonDelivery.TabIndex = 12;
             this.buttonDelivery.Text = "Доставить";
             this.buttonDelivery.UseVisualStyleBackColor = true;
+            this.buttonDelivery.Click += new System.EventHandler(this.buttonDelivery_Click);
             // 
             // textBoxTo
             // 
@@ -119,7 +120,7 @@
             this.textBoxTo.Name = "textBoxTo";
             this.textBoxTo.ReadOnly = true;
             this.textBoxTo.Size = new System.Drawing.Size(352, 36);
-            this.textBoxTo.TabIndex = 30;
+            this.textBoxTo.TabIndex = 8;
             // 
             // textBoxFrom
             // 
@@ -128,7 +129,7 @@
             this.textBoxFrom.Name = "textBoxFrom";
             this.textBoxFrom.ReadOnly = true;
             this.textBoxFrom.Size = new System.Drawing.Size(352, 36);
-            this.textBoxFrom.TabIndex = 29;
+            this.textBoxFrom.TabIndex = 7;
             // 
             // textBoxWeight
             // 
@@ -137,7 +138,7 @@
             this.textBoxWeight.Name = "textBoxWeight";
             this.textBoxWeight.ReadOnly = true;
             this.textBoxWeight.Size = new System.Drawing.Size(352, 36);
-            this.textBoxWeight.TabIndex = 28;
+            this.textBoxWeight.TabIndex = 6;
             // 
             // textBoxCargo
             // 
@@ -146,7 +147,7 @@
             this.textBoxCargo.Name = "textBoxCargo";
             this.textBoxCargo.ReadOnly = true;
             this.textBoxCargo.Size = new System.Drawing.Size(352, 36);
-            this.textBoxCargo.TabIndex = 27;
+            this.textBoxCargo.TabIndex = 5;
             // 
             // textBoxDriverID
             // 
@@ -155,7 +156,7 @@
             this.textBoxDriverID.Name = "textBoxDriverID";
             this.textBoxDriverID.ReadOnly = true;
             this.textBoxDriverID.Size = new System.Drawing.Size(352, 36);
-            this.textBoxDriverID.TabIndex = 25;
+            this.textBoxDriverID.TabIndex = 3;
             // 
             // buttonCancel
             // 
@@ -164,9 +165,10 @@
             this.buttonCancel.Location = new System.Drawing.Point(396, 533);
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.Size = new System.Drawing.Size(170, 50);
-            this.buttonCancel.TabIndex = 33;
+            this.buttonCancel.TabIndex = 11;
             this.buttonCancel.Text = "Отказаться";
             this.buttonCancel.UseVisualStyleBackColor = true;
+            this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
             // 
             // buttonAccept
             // 
@@ -175,9 +177,10 @@
             this.buttonAccept.Location = new System.Drawing.Point(214, 533);
             this.buttonAccept.Name = "buttonAccept";
             this.buttonAccept.Size = new System.Drawing.Size(170, 50);
-            this.buttonAccept.TabIndex = 32;
+            this.buttonAccept.TabIndex = 10;
             this.buttonAccept.Text = "Принять";
             this.buttonAccept.UseVisualStyleBackColor = true;
+            this.buttonAccept.Click += new System.EventHandler(this.buttonAccept_Click);
             // 
             // buttonCurrent
             // 
@@ -186,7 +189,7 @@
             this.buttonCurrent.Location = new System.Drawing.Point(32, 533);
             this.buttonCurrent.Name = "buttonCurrent";
             this.buttonCurrent.Size = new System.Drawing.Size(170, 50);
-            this.buttonCurrent.TabIndex = 31;
+            this.buttonCurrent.TabIndex = 9;
             this.buttonCurrent.Text = "Текущий груз";
             this.buttonCurrent.UseVisualStyleBackColor = true;
             this.buttonCurrent.Click += new System.EventHandler(this.buttonCurrent_Click);
@@ -199,7 +202,7 @@
             this.labelTo.Location = new System.Drawing.Point(404, 421);
             this.labelTo.Name = "labelTo";
             this.labelTo.Size = new System.Drawing.Size(245, 33);
-            this.labelTo.TabIndex = 23;
+            this.labelTo.TabIndex = 0;
             this.labelTo.Text = "Пункт назначения";
             // 
             // labelFrom
@@ -210,7 +213,7 @@
             this.labelFrom.Location = new System.Drawing.Point(40, 421);
             this.labelFrom.Name = "labelFrom";
             this.labelFrom.Size = new System.Drawing.Size(260, 33);
-            this.labelFrom.TabIndex = 22;
+            this.labelFrom.TabIndex = 0;
             this.labelFrom.Text = "Пункт отправления";
             // 
             // labelWeight
@@ -221,7 +224,7 @@
             this.labelWeight.Location = new System.Drawing.Point(404, 331);
             this.labelWeight.Name = "labelWeight";
             this.labelWeight.Size = new System.Drawing.Size(278, 33);
-            this.labelWeight.TabIndex = 21;
+            this.labelWeight.TabIndex = 0;
             this.labelWeight.Text = "Масса груза в тоннах";
             // 
             // labelCargo
@@ -232,7 +235,7 @@
             this.labelCargo.Location = new System.Drawing.Point(40, 331);
             this.labelCargo.Name = "labelCargo";
             this.labelCargo.Size = new System.Drawing.Size(281, 33);
-            this.labelCargo.TabIndex = 20;
+            this.labelCargo.TabIndex = 0;
             this.labelCargo.Text = "Наименование груза";
             // 
             // labelStatus
@@ -243,7 +246,7 @@
             this.labelStatus.Location = new System.Drawing.Point(404, 241);
             this.labelStatus.Name = "labelStatus";
             this.labelStatus.Size = new System.Drawing.Size(95, 33);
-            this.labelStatus.TabIndex = 19;
+            this.labelStatus.TabIndex = 0;
             this.labelStatus.Text = "Статус";
             // 
             // labelDriverID
@@ -254,7 +257,7 @@
             this.labelDriverID.Location = new System.Drawing.Point(40, 241);
             this.labelDriverID.Name = "labelDriverID";
             this.labelDriverID.Size = new System.Drawing.Size(166, 33);
-            this.labelDriverID.TabIndex = 18;
+            this.labelDriverID.TabIndex = 0;
             this.labelDriverID.Text = "ID водителя";
             // 
             // comboBox_ID
@@ -266,7 +269,7 @@
             this.comboBox_ID.Location = new System.Drawing.Point(322, 190);
             this.comboBox_ID.Name = "comboBox_ID";
             this.comboBox_ID.Size = new System.Drawing.Size(200, 40);
-            this.comboBox_ID.TabIndex = 24;
+            this.comboBox_ID.TabIndex = 2;
             this.comboBox_ID.SelectedValueChanged += new System.EventHandler(this.comboBox_ID_SelectedValueChanged);
             // 
             // label_ID
@@ -277,7 +280,7 @@
             this.label_ID.Location = new System.Drawing.Point(267, 192);
             this.label_ID.Name = "label_ID";
             this.label_ID.Size = new System.Drawing.Size(42, 33);
-            this.label_ID.TabIndex = 17;
+            this.label_ID.TabIndex = 0;
             this.label_ID.Text = "ID";
             // 
             // label2
@@ -285,10 +288,10 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Montserrat", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(525, 48);
+            this.label2.Location = new System.Drawing.Point(519, 48);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(129, 33);
-            this.label2.TabIndex = 35;
+            this.label2.TabIndex = 0;
             this.label2.Text = "Ваш ID: 0";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -299,7 +302,7 @@
             this.textBoxStatus.Name = "textBoxStatus";
             this.textBoxStatus.ReadOnly = true;
             this.textBoxStatus.Size = new System.Drawing.Size(352, 36);
-            this.textBoxStatus.TabIndex = 36;
+            this.textBoxStatus.TabIndex = 4;
             // 
             // FormDriver
             // 
