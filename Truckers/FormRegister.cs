@@ -26,10 +26,8 @@ namespace Truckers
         {
             InitializeComponent();
             this.formLogin = formLogin; // присваивание ссылки на форму авторизации
-            this.remoteHTTP = remoteHTTP; 
-            ILease lease = (ILease)remoteHTTP.InitializeLifetimeService();
-            ClientSponsor clientHTTPSponsor = new ClientSponsor();
-            lease.Register(clientHTTPSponsor);
+            this.remoteHTTP = remoteHTTP;
+            this.TopMost = true;
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) // нажатие на кнопку "Авторизоваться"
@@ -47,7 +45,6 @@ namespace Truckers
             // проверка на пустые поля
             if (textBox1.Text == "" || textBox2.Text == "" || textBox3.Text == "" || comboBox1.Text == "")
             {
-                this.TopMost = true;
                 MessageBox.Show(
                         "Не все поля заполнены!",
                         "Ошибка!",
@@ -55,7 +52,6 @@ namespace Truckers
                         MessageBoxIcon.Warning,
                         MessageBoxDefaultButton.Button1,
                         MessageBoxOptions.DefaultDesktopOnly);
-                this.TopMost = false;
             }
             else
             {
@@ -65,7 +61,6 @@ namespace Truckers
                 // если регистрация успешна
                 if (result == "0")
                 {
-                    this.TopMost = true;
                     MessageBox.Show(
                             "Регистрация прошла успешно!",
                             "Успех!",
@@ -73,12 +68,10 @@ namespace Truckers
                             MessageBoxIcon.Information,
                             MessageBoxDefaultButton.Button1,
                             MessageBoxOptions.DefaultDesktopOnly);
-                    this.TopMost = false;
                 }
                 // если пользователь с таким логином уже существует
                 else if (result == "1")
                 {
-                    this.TopMost = true;
                     MessageBox.Show(
                             "Пользователь с таким логином уже существует!",
                             "Ошибка!",
@@ -86,7 +79,6 @@ namespace Truckers
                             MessageBoxIcon.Warning,
                             MessageBoxDefaultButton.Button1,
                             MessageBoxOptions.DefaultDesktopOnly);
-                    this.TopMost = false;
                 }
             }
         }

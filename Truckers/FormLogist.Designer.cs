@@ -157,7 +157,7 @@ namespace Truckers
             // buttonReload
             // 
             this.buttonReload.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.buttonReload.Font = new System.Drawing.Font("Century Gothic", 13.8F);
+            this.buttonReload.Font = new System.Drawing.Font("Montserrat", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.buttonReload.Location = new System.Drawing.Point(32, 533);
             this.buttonReload.Name = "buttonReload";
             this.buttonReload.Size = new System.Drawing.Size(170, 50);
@@ -169,7 +169,7 @@ namespace Truckers
             // buttonSave
             // 
             this.buttonSave.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.buttonSave.Font = new System.Drawing.Font("Century Gothic", 13.8F);
+            this.buttonSave.Font = new System.Drawing.Font("Montserrat", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.buttonSave.Location = new System.Drawing.Point(214, 533);
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(170, 50);
@@ -181,7 +181,7 @@ namespace Truckers
             // buttonAdd
             // 
             this.buttonAdd.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.buttonAdd.Font = new System.Drawing.Font("Century Gothic", 13.8F);
+            this.buttonAdd.Font = new System.Drawing.Font("Montserrat", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.buttonAdd.Location = new System.Drawing.Point(396, 533);
             this.buttonAdd.Name = "buttonAdd";
             this.buttonAdd.Size = new System.Drawing.Size(170, 50);
@@ -245,7 +245,7 @@ namespace Truckers
             // buttonDelete
             // 
             this.buttonDelete.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.buttonDelete.Font = new System.Drawing.Font("Century Gothic", 13.8F);
+            this.buttonDelete.Font = new System.Drawing.Font("Montserrat", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.buttonDelete.Location = new System.Drawing.Point(577, 533);
             this.buttonDelete.Name = "buttonDelete";
             this.buttonDelete.Size = new System.Drawing.Size(170, 50);
@@ -257,7 +257,7 @@ namespace Truckers
             // buttonExit
             // 
             this.buttonExit.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.buttonExit.Font = new System.Drawing.Font("Century Gothic", 13.8F);
+            this.buttonExit.Font = new System.Drawing.Font("Montserrat", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.buttonExit.Location = new System.Drawing.Point(432, 83);
             this.buttonExit.Name = "buttonExit";
             this.buttonExit.Size = new System.Drawing.Size(315, 50);

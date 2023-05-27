@@ -145,6 +145,31 @@ namespace Server
             }
         }
 
+        /// <summary>
+        /// Получение данных о грузе по ID водителя
+        /// </summary>
+        /// <returns>
+        /// Данные о грузе
+        /// </returns>
+        public DataTable Driver_GetCargo(string DriverID)
+        {
+            using (OleDbConnection connection = new OleDbConnection(connectionString))
+            {
+                // открытие соединения
+                connection.Open();
+
+                // обновление данных по ID
+                string sql = string.Format("SELECT * FROM Cargo WHERE DriverID = {0}", DriverID);
+                DataTable dataTable = new DataTable(); // создание таблицы
+                OleDbDataAdapter adapter = new OleDbDataAdapter(sql, connection);
+                adapter.Fill(dataTable); // запись результатов выполнения запроса в таблицу
+
+                // закрытие соединения
+                connection.Close();
+                return dataTable;
+            }
+        }
+
         public byte[] Upload(string path)
         {
             return File.ReadAllBytes("Sources\\" + path);

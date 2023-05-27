@@ -60,31 +60,6 @@ namespace Server
         }
 
         /// <summary>
-        /// Вывод имени пользователя по логину
-        /// </summary>
-        /// <returns>
-        /// Имя пользователя
-        /// </returns>
-        public string GetUsername(string login)
-        {
-            using (OleDbConnection connection = new OleDbConnection(connectionString))
-            {
-                // открытие соединения
-                connection.Open();
-
-                DataTable dataTable = new DataTable(); // создание таблицы
-                OleDbDataAdapter adapter = new OleDbDataAdapter(string.Format("SELECT * FROM Users WHERE Login='{0}'", login), connection);
-                adapter.Fill(dataTable); // запись результатов выполнения запроса в таблицу
-
-                // закрытие соединения
-                connection.Close();
-
-                // вывод имени пользователя
-                return dataTable.Rows[0][1].ToString();
-            }
-        }
-
-        /// <summary>
         /// Регистрация пользователя
         /// </summary>
         /// <returns>
@@ -122,9 +97,54 @@ namespace Server
             }
         }
 
-        public byte[] Upload(string path)
+        /// <summary>
+        /// Вывод имени пользователя по логину
+        /// </summary>
+        /// <returns>
+        /// Имя пользователя
+        /// </returns>
+        public string GetUsername(string login)
         {
-            return File.ReadAllBytes("Sources\\" + path);
+            using (OleDbConnection connection = new OleDbConnection(connectionString))
+            {
+                // открытие соединения
+                connection.Open();
+
+                DataTable dataTable = new DataTable(); // создание таблицы
+                OleDbDataAdapter adapter = new OleDbDataAdapter(string.Format("SELECT * FROM Users WHERE Login='{0}'", login), connection);
+                adapter.Fill(dataTable); // запись результатов выполнения запроса в таблицу
+
+                // закрытие соединения
+                connection.Close();
+
+                // вывод имени пользователя
+                return dataTable.Rows[0][1].ToString();
+            }
+        }
+
+        /// <summary>
+        /// Вывод ID пользователя по логину
+        /// </summary>
+        /// <returns>
+        /// ID пользователя
+        /// </returns>
+        public int GetID(string login)
+        {
+            using (OleDbConnection connection = new OleDbConnection(connectionString))
+            {
+                // открытие соединения
+                connection.Open();
+
+                DataTable dataTable = new DataTable(); // создание таблицы
+                OleDbDataAdapter adapter = new OleDbDataAdapter(string.Format("SELECT * FROM Users WHERE Login='{0}'", login), connection);
+                adapter.Fill(dataTable); // запись результатов выполнения запроса в таблицу
+
+                // закрытие соединения
+                connection.Close();
+
+                // вывод имени пользователя
+                return Convert.ToInt32(dataTable.Rows[0][0]);
+            }
         }
 
 		public override object InitializeLifetimeService()

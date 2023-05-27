@@ -22,7 +22,7 @@ namespace Truckers
         {
             InitializeComponent();
             this.formLogin = formLogin; // присваивание ссылки на форму авторизации
-            label1.Text = "Логист: " + username;
+            label1.Text = "Логист: " + username; // вывод имени пользователя на форму
             ConnectToServer();
             CargoReload();
             this.TopMost = true;
@@ -82,7 +82,7 @@ namespace Truckers
         {
             // открытие формы авторизации
             formLogin.Show();
-            // закрытие этой формы регистрации
+            // закрытие этой формы логиста
             this.Close();
             // освобождение памяти
             this.Dispose();

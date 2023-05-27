@@ -26,6 +26,7 @@ namespace Truckers
         {
             InitializeComponent();
             ConnectToServer();
+            this.TopMost = true;
         }
 
         private void ConnectToServer() // установка соединения с сервером
@@ -42,7 +43,6 @@ namespace Truckers
             // проверка на пустные поля
             if (textBox1.Text == "" || textBox2.Text == "")
             {
-                this.TopMost = true;
                 MessageBox.Show(
                         "Введите логин и пароль!",
                         "Ошибка!",
@@ -50,7 +50,6 @@ namespace Truckers
                         MessageBoxIcon.Error,
                         MessageBoxDefaultButton.Button1,
                         MessageBoxOptions.DefaultDesktopOnly);
-                this.TopMost = false;
             }
             else
             {
@@ -60,7 +59,6 @@ namespace Truckers
                 // если пользователей с таким логином и паролем нет
                 if (result == "1")
                 {
-                    this.TopMost = true;
                     MessageBox.Show(
                             "Неверный логин или пароль!",
                             "Ошибка!",
@@ -68,7 +66,6 @@ namespace Truckers
                             MessageBoxIcon.Error,
                             MessageBoxDefaultButton.Button1,
                             MessageBoxOptions.DefaultDesktopOnly);
-                    this.TopMost = false;
                 }
                 // если такой пользователь логист
                 else if (result == "logist")
@@ -83,8 +80,13 @@ namespace Truckers
                 // если такой пользователь водитель
                 else if (result == "driver")
                 {
-                    // заглушка
-                    System.Diagnostics.Debug.WriteLine("Вход от имени водителя");
+                    // получение имени пользователя
+                    string username = remoteHTTP.GetUsername(textBox1.Text);
+                    int ID = remoteHTTP.GetID(textBox1.Text);
+                    // переход к форме водителя
+                    FormDriver formDriver = new FormDriver(this, username, ID);
+                    formDriver.Show();
+                    this.Hide();
                 }
             }
         }
