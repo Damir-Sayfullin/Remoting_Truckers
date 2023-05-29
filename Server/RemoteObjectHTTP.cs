@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Data;
 using System.Data.OleDb;
-using System.IO;
 using System.Runtime.Remoting.Lifetime;
 
 namespace Server
@@ -10,7 +9,7 @@ namespace Server
     public class RemoteObjectHTTP : MarshalByRefObject
     {
         // ссылка на базу данных
-        private string connectionString = "Provider=Microsoft.Jet.OleDb.4.0;Data Source=C:/My Files/Универ/3 курс/Технологии программирования/TP_Truckers/Truckers/data/TruckersDB.mdb";
+        private string connectionString = "Provider=Microsoft.Jet.OleDb.4.0;Data Source=C:/My Files/Универ/3 курс/Технологии программирования/Remoting_Truckers/Truckers/data/TruckersDB.mdb";
 
         public RemoteObjectHTTP()
         {
@@ -20,7 +19,6 @@ namespace Server
         {
             Console.WriteLine("Удаленный объект HTTP уничтожен!");
         }
-
 
         /// <summary>
         /// Поиск пользователей по логину и паролю
@@ -34,14 +32,11 @@ namespace Server
             {
                 // открытие соединения
                 connection.Open();
-
                 DataTable dataTable = new DataTable(); // создание таблицы
                 OleDbDataAdapter adapter = new OleDbDataAdapter(string.Format("SELECT * FROM Users WHERE Login='{0}' AND Password='{1}'", login, password), connection);
                 adapter.Fill(dataTable); // запись результатов выполнения запроса в таблицу
-
                 // закрытие соединения
                 connection.Close();
-
                 // если пользователь с таким логином и паролем не найден
                 if (dataTable.Rows.Count == 0)
                     return "1";
@@ -72,12 +67,10 @@ namespace Server
             {
                 // открытие соединения
                 connection.Open();
-
                 // проверка на повтор логина
                 DataTable dataTable = new DataTable(); // создание таблицы
                 OleDbDataAdapter adapter = new OleDbDataAdapter("SELECT * FROM Users WHERE Login='" + login + "'", connection);
                 adapter.Fill(dataTable); // запись результатов выполнения запроса в таблицу
-
                 // если пользователей с таким логином не существует
                 if (dataTable.Rows.Count == 0)
                 {
@@ -109,14 +102,11 @@ namespace Server
             {
                 // открытие соединения
                 connection.Open();
-
                 DataTable dataTable = new DataTable(); // создание таблицы
                 OleDbDataAdapter adapter = new OleDbDataAdapter(string.Format("SELECT * FROM Users WHERE Login='{0}'", login), connection);
                 adapter.Fill(dataTable); // запись результатов выполнения запроса в таблицу
-
                 // закрытие соединения
                 connection.Close();
-
                 // вывод имени пользователя
                 return dataTable.Rows[0][1].ToString();
             }
@@ -134,14 +124,11 @@ namespace Server
             {
                 // открытие соединения
                 connection.Open();
-
                 DataTable dataTable = new DataTable(); // создание таблицы
                 OleDbDataAdapter adapter = new OleDbDataAdapter(string.Format("SELECT * FROM Users WHERE Login='{0}'", login), connection);
                 adapter.Fill(dataTable); // запись результатов выполнения запроса в таблицу
-
                 // закрытие соединения
                 connection.Close();
-
                 // вывод имени пользователя
                 return Convert.ToInt32(dataTable.Rows[0][0]);
             }
@@ -150,14 +137,12 @@ namespace Server
 		public override object InitializeLifetimeService()
         {
             ILease lease = (ILease)base.InitializeLifetimeService();
-
             if (lease.CurrentState == LeaseState.Initial)
             {
                 lease.InitialLeaseTime = TimeSpan.FromSeconds(3);
                 lease.SponsorshipTimeout = TimeSpan.FromSeconds(10);
                 lease.RenewOnCallTime = TimeSpan.FromSeconds(2);
             }
-
             return lease;
         }
 

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Data;
 using System.Data.OleDb;
-using System.IO;
 using System.Runtime.Remoting.Lifetime;
 
 namespace Server
@@ -10,7 +9,7 @@ namespace Server
     public class RemoteObjectTCP : MarshalByRefObject
     {
         // ссылка на базу данных
-        private string connectionString = "Provider=Microsoft.Jet.OleDb.4.0;Data Source=C:/My Files/Универ/3 курс/Технологии программирования/TP_Truckers/Truckers/data/TruckersDB.mdb";
+        private string connectionString = "Provider=Microsoft.Jet.OleDb.4.0;Data Source=C:/My Files/Универ/3 курс/Технологии программирования/Remoting_Truckers/Truckers/data/TruckersDB.mdb";
 
         public RemoteObjectTCP()
         {
@@ -33,14 +32,11 @@ namespace Server
             {
                 // открытие соединения
                 connection.Open();
-
                 DataTable dataTable = new DataTable(); // создание таблицы
                 OleDbDataAdapter adapter = new OleDbDataAdapter("SELECT * FROM Cargo", connection);
                 adapter.Fill(dataTable); // запись результатов выполнения запроса в таблицу
-
                 // закрытие соединения
                 connection.Close();
-
                 // возвращение таблицы
                 return dataTable;
             }
@@ -58,12 +54,10 @@ namespace Server
             {
                 // открытие соединения
                 connection.Open();
-
                 // обновление данных по ID
                 string sql = string.Format("UPDATE Cargo SET DriverID={1}, Status='{2}', Cargo='{3}', Weight={4}, [From]='{5}', [To]='{6}' WHERE ID={0}", ID, DriverID, Status, Cargo, Weight, From, To);
                 OleDbCommand cmd = new OleDbCommand(sql, connection);
                 cmd.ExecuteNonQuery();
-
                 // закрытие соединения
                 connection.Close();
                 return "0";
@@ -82,12 +76,10 @@ namespace Server
             {
                 // открытие соединения
                 connection.Open();
-
                 // добавление данных
                 string sql = string.Format("INSERT INTO Cargo (DriverID, Status, Cargo, Weight, [From], [To]) VALUES ({0}, '{1}', '{2}', {3}, '{4}', '{5}')", DriverID, Status, Cargo, Weight, From, To);
                 OleDbCommand cmd = new OleDbCommand(sql, connection);
                 cmd.ExecuteNonQuery();
-
                 // закрытие соединения
                 connection.Close();
                 return "0";
@@ -106,12 +98,10 @@ namespace Server
             {
                 // открытие соединения
                 connection.Open();
-
                 // удаление данных по ID
                 string sql = string.Format("DELETE FROM Cargo WHERE ID = {0}", ID);
                 OleDbCommand cmd = new OleDbCommand(sql, connection);
                 cmd.ExecuteNonQuery();
-
                 // закрытие соединения
                 connection.Close();
                 return "0";
@@ -132,13 +122,11 @@ namespace Server
             {
                 // открытие соединения
                 connection.Open();
-
                 // обновление данных по ID
                 string sql = string.Format("SELECT * FROM Cargo WHERE DriverID = {0}", DriverID);
                 DataTable dataTable = new DataTable(); // создание таблицы
                 OleDbDataAdapter adapter = new OleDbDataAdapter(sql, connection);
                 adapter.Fill(dataTable); // запись результатов выполнения запроса в таблицу
-
                 // закрытие соединения
                 connection.Close();
                 return dataTable.Rows.Count.ToString();
@@ -157,13 +145,11 @@ namespace Server
             {
                 // открытие соединения
                 connection.Open();
-
                 // обновление данных по ID
                 string sql = string.Format("SELECT * FROM Cargo WHERE DriverID = {0}", DriverID);
                 DataTable dataTable = new DataTable(); // создание таблицы
                 OleDbDataAdapter adapter = new OleDbDataAdapter(sql, connection);
                 adapter.Fill(dataTable); // запись результатов выполнения запроса в таблицу
-
                 // закрытие соединения
                 connection.Close();
                 return dataTable;
@@ -183,13 +169,11 @@ namespace Server
             {
                 // открытие соединения
                 connection.Open();
-
                 // обновление данных по ID
                 string sql = string.Format("SELECT * FROM Cargo WHERE ID = {0}", ID);
                 DataTable dataTable = new DataTable(); // создание таблицы
                 OleDbDataAdapter adapter = new OleDbDataAdapter(sql, connection);
                 adapter.Fill(dataTable); // запись результатов выполнения запроса в таблицу
-
                 // закрытие соединения
                 connection.Close();
                 return Convert.ToInt32(dataTable.Rows[0]["DriverID"]);
@@ -209,11 +193,9 @@ namespace Server
             {
                 // открытие соединения
                 connection.Open();
-
                 DataTable dataTable = new DataTable(); // создание таблицы
                 OleDbDataAdapter adapter = new OleDbDataAdapter("SELECT * FROM Cargo WHERE ID=" + ID, connection);
                 adapter.Fill(dataTable); // запись результатов выполнения запроса в таблицу
-
                 // проверка статуса груза
                 if (dataTable.Rows[0]["Status"].ToString() == "ready for unloading")
                 {
@@ -246,12 +228,10 @@ namespace Server
             {
                 // открытие соединения
                 connection.Open();
-
                 // обновление данных по ID
                 string sql = string.Format("UPDATE Cargo SET DriverID=0, Status='ready for unloading' WHERE DriverID={0}", DriverID);
                 OleDbCommand cmd = new OleDbCommand(sql, connection);
                 cmd.ExecuteNonQuery();
-
                 // закрытие соединения
                 connection.Close();
                 return 0;
@@ -270,12 +250,10 @@ namespace Server
             {
                 // открытие соединения
                 connection.Open();
-
                 // обновление данных по ID
                 string sql = string.Format("UPDATE Cargo SET DriverID=0, Status='delivered' WHERE DriverID={0}", DriverID);
                 OleDbCommand cmd = new OleDbCommand(sql, connection);
                 cmd.ExecuteNonQuery();
-
                 // закрытие соединения
                 connection.Close();
                 return 0;
@@ -285,7 +263,6 @@ namespace Server
         public override object InitializeLifetimeService()
         {
             ILease lease = (ILease)base.InitializeLifetimeService();
-
             if (lease.CurrentState == LeaseState.Initial)
             {
                 lease.InitialLeaseTime = TimeSpan.FromSeconds(3);

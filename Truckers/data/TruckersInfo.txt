@@ -9,5 +9,3 @@
       • Отмена груза
       • Просмотр информации о текущем грузе              
   • Регистрация
-
-Add Accept, Cancel, Delivery buttons on FormDriver.

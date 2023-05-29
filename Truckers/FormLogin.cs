@@ -1,16 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Runtime.Remoting;
 using System.Runtime.Remoting.Channels;
 using System.Runtime.Remoting.Channels.Http;
 using System.Runtime.Remoting.Lifetime;
 using System.Runtime.Serialization.Formatters;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Server;
 
@@ -20,7 +13,6 @@ namespace Truckers
     {
         RemoteObjectHTTP remoteHTTP; // удаленный объект
         HttpChannel channel = new HttpChannel(new Dictionary<string, string> { { "port", "0" } }, new BinaryClientFormatterSinkProvider(), new BinaryServerFormatterSinkProvider { TypeFilterLevel = TypeFilterLevel.Full });
-
         bool password_show = false;
         public FormLogin()
         {
@@ -55,7 +47,6 @@ namespace Truckers
             {
                 // вызов метода Autorization у удаленного объекта
                 string result = remoteHTTP.Autorization(textBox1.Text, textBox2.Text);
-                
                 // если пользователей с таким логином и паролем нет
                 if (result == "1")
                 {

@@ -1,14 +1,8 @@
 ﻿using Server;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
 using System.Runtime.Remoting;
 using System.Runtime.Remoting.Lifetime;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Truckers
@@ -32,7 +26,7 @@ namespace Truckers
         }
         private void ConnectToServer() // установка соединения с сервером
         {
-            RemotingConfiguration.Configure("C:/My Files/Универ/3 курс/Технологии программирования/TP_Truckers/Truckers/ClientConfig.config", false);
+            RemotingConfiguration.Configure("C:/My Files/Универ/3 курс/Технологии программирования/Remoting_Truckers/Truckers/ClientConfig.config", false);
             remoteTCP = new RemoteObjectTCP();
             ILease lease = (ILease)remoteTCP.InitializeLifetimeService();
             ClientSponsor clientTCPSponsor = new ClientSponsor();
@@ -44,7 +38,6 @@ namespace Truckers
             cargoDataTable = remoteTCP.Logist_CargoReload();
             // очистка выпадающего списка
             comboBox_ID.Items.Clear();
-
             // проходим по каждой строке в cargoDataTable
             foreach (DataRow row in cargoDataTable.Rows)
             {

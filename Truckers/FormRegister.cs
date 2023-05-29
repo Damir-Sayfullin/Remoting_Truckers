@@ -1,15 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
 using System.Runtime.Remoting.Channels;
 using System.Runtime.Remoting.Channels.Http;
-using System.Runtime.Remoting.Lifetime;
 using System.Runtime.Serialization.Formatters;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Server;
 
@@ -18,7 +11,6 @@ namespace Truckers
     public partial class FormRegister : Form
     {
         HttpChannel channel = new HttpChannel(new Dictionary<string, string> { { "port", "0" } }, new BinaryClientFormatterSinkProvider(), new BinaryServerFormatterSinkProvider { TypeFilterLevel = TypeFilterLevel.Full });
-
         bool password_show = false; // показывать пароль
         RemoteObjectHTTP remoteHTTP; // удаленный объект
         FormLogin formLogin; // ссылка на форму авторизации
@@ -57,7 +49,6 @@ namespace Truckers
             {
                 // вызов метода Registration у удаленного объекта
                 string result = remoteHTTP.Registration(textBox1.Text, textBox2.Text, textBox3.Text, comboBox1.Text);
-
                 // если регистрация успешна
                 if (result == "0")
                 {

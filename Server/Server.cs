@@ -11,16 +11,6 @@ namespace Server
     {
         static void Main(string[] args)
         {
-            //TcpChannel channel = new TcpChannel(8080);
-            //ChannelServices.RegisterChannel(channel, false);
-
-            //RemotingConfiguration.RegisterWellKnownServiceType(
-            //    typeof(RemoteObject),
-            //    "RemoteObject.rem",
-            //    WellKnownObjectMode.Singleton);
-
-            //Console.WriteLine("Сервер запущен. Нажмите enter для остановки.");
-            //Console.ReadLine();
             ServerTCP();
             ServerHTTP();
             Console.WriteLine("Сервер запущен. Нажмите enter для остановки.");
@@ -48,10 +38,9 @@ namespace Server
 
         static void ServerHTTP()
         {
-            RemotingConfiguration.Configure("C:/My Files/Универ/3 курс/Технологии программирования/TP_Truckers/Server/ServerConfig.config", true);
+            RemotingConfiguration.Configure("C:/My Files/Универ/3 курс/Технологии программирования/Remoting_Truckers/Server/ServerConfig.config", true);
             Console.WriteLine("Канал HTTP был создан");
         }
-
     }
 }
 
