@@ -87,20 +87,20 @@ The **Server** project contains 2 **.cs** files:
 - **RemoteObjectHTTP.cs** - Connection via HTTP channel.
 - **RemoteObjectTCP.cs** - Connection via TCP channel.
 ### RemoteObjectHTTP.cs
-`public string Authorization(string login, string password)` - Method to find users by login and password. Returns the count of users with the given login and password.
-`public string Registration(string name, string login, string password, string post)` - Method for user registration. Returns "0" if registration is successful, "1" if a user with the same login already exists.
-`public string GetUsername(string login)` - Method to retrieve the username based on login. Returns the username.
-`public int GetID(string login)` - Method to retrieve the user ID based on login. Returns the user ID.
-`public override object InitializeLifetimeService()` - Method to initialize the sponsor.
+`public string Authorization(string login, string password)` - Method to find users by login and password. Returns the count of users with the given login and password.  
+`public string Registration(string name, string login, string password, string post)` - Method for user registration. Returns "0" if registration is successful, "1" if a user with the same login already exists.  
+`public string GetUsername(string login)` - Method to retrieve the username based on login. Returns the username.  
+`public int GetID(string login)` - Method to retrieve the user ID based on login. Returns the user ID.  
+`public override object InitializeLifetimeService()` - Method to initialize the sponsor.  
 ### RemoteObjectTCP.cs
-`public DataTable Logist_CargoReload()` - Method to retrieve the database. Returns a DataTable.
-`public string Logist_CargoSave(string ID, string DriverID, string Status, string Cargo, string Weight, string From, string To)` - Method to modify cargo data in the database based on ID. Returns "0" if the modification is successful.
-`public string Logist_CargoAdd(string DriverID, string Status, string Cargo, string Weight, string From, string To)` - Method to add records to the database. Returns "0" if the addition is successful.
-`public string Logist_CargoDelete(string ID)` - Method to delete a record from the database based on ID. Returns "0" if the deletion is successful.
-`public string Logist_GetDriversCount(string DriverID)` - Method to find the count of cargos based on driver ID. Returns the count of cargos.
-`public DataTable Driver_GetCargo(string DriverID)` - Method to retrieve cargo data based on driver ID. Returns a DataTable.
-`public int Driver_GetDriverID(string ID)` - Method to retrieve the driver ID based on cargo ID. Returns the driver ID if the cargo has a driver, and "0" if the cargo has not been assigned a driver yet.
-`public int Driver_CargoAccept(string ID, string DriverID)` - Method for a driver to accept cargo based on cargo ID and driver ID. Returns "0" if successful, and "1" if the cargo has already been delivered.
-`public int Driver_CargoCancel(string DriverID)` - Method for a driver to cancel cargo acceptance based on driver ID. Returns "0" if successful.
-`public int Driver_CargoDelivery(string DriverID)` - Method for a driver to mark cargo as delivered based on driver ID. Returns "0" if successful.
-`public override object InitializeLifetimeService()` - Method to initialize the sponsor.
+`public DataTable Logist_CargoReload()` - Method to retrieve the database. Returns a DataTable.  
+`public string Logist_CargoSave(string ID, string DriverID, string Status, string Cargo, string Weight, string From, string To)` - Method to modify cargo data in the database based on ID. Returns "0" if the modification is successful.  
+`public string Logist_CargoAdd(string DriverID, string Status, string Cargo, string Weight, string From, string To)` - Method to add records to the database. Returns "0" if the addition is successful.  
+`public string Logist_CargoDelete(string ID)` - Method to delete a record from the database based on ID. Returns "0" if the deletion is successful.  
+`public string Logist_GetDriversCount(string DriverID)` - Method to find the count of cargos based on driver ID. Returns the count of cargos.  
+`public DataTable Driver_GetCargo(string DriverID)` - Method to retrieve cargo data based on driver ID. Returns a DataTable.  
+`public int Driver_GetDriverID(string ID)` - Method to retrieve the driver ID based on cargo ID. Returns the driver ID if the cargo has a driver, and "0" if the cargo has not been assigned a driver yet.  
+`public int Driver_CargoAccept(string ID, string DriverID)` - Method for a driver to accept cargo based on cargo ID and driver ID. Returns "0" if successful, and "1" if the cargo has already been delivered.  
+`public int Driver_CargoCancel(string DriverID)` - Method for a driver to cancel cargo acceptance based on driver ID. Returns "0" if successful.  
+`public int Driver_CargoDelivery(string DriverID)` - Method for a driver to mark cargo as delivered based on driver ID. Returns "0" if successful.  
+`public override object InitializeLifetimeService()` - Method to initialize the sponsor.  
