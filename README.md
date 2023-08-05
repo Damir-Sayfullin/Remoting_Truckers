@@ -1,5 +1,5 @@
 # Truckers - Client-Server Application in WinForms using .NET Remoting
-### <a href=https://github.com/Damir-Sayfullin/Remoting_Truckers/blob/main/README.md>На русском</a>
+### <a href=https://github.com/Damir-Sayfullin/Remoting_Truckers/blob/main/README-ru.md>На русском</a>
 ## About the Project
 <p align="center">
     <a href=https://learn.microsoft.com/ru-ru/dotnet/csharp/><img src="https://img.shields.io/badge/C%23-662179?style=for-the-badge" alt="C# Version"></a>
